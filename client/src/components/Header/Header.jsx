@@ -7,52 +7,52 @@ import Logo from "../../../src/assets/logo2.png"
 import { useState } from "react"
 
 
-
 export default function Header() {
   const [selectedItem, setSelectedItem] = useState('');
+
 
   return (
     <div className="sticky w-full bg-white border-b font-semibold text-sm">
       <div className="max-w-7xl mx-auto">
         <div className="px-4 py-4">
           <div className="flex justify-between items-center">
-            <div className="hover:cursor-pointer" onClick={() => setSelectedItem('')}>
+            <Link to={"/"} className="hover:cursor-pointer" onClick={() => {setSelectedItem('')}}>
               <img src={Logo} alt="station watch logo" className="w-32" />
-            </div>
+            </Link>
             <div className="w-full flex items-center gap-4 justify-center">
               <NavItem
                 name={"Test Oluştur"}
-                link={"/"}
+                link={"/testolustur"}
                 onClick={() => setSelectedItem('Test Oluştur')}
                 style={selectedItem === 'Test Oluştur' ? 'selected' : ''}
               />
               <NavItem
                 name={"Bekleyen Testler"}
-                link={"/"}
+                link={"/bekleyentestler"}
                 onClick={() => setSelectedItem('Bekleyen Testler')}
                 style={selectedItem === 'Bekleyen Testler' ? 'selected' : ''}
               />
               <NavItem
                 name={"Laboratuvarlar"}
-                link={"/"}
+                link={"/laboratuvarlar"}
                 onClick={() => setSelectedItem('Laboratuvarlar')}
                 style={selectedItem === 'Laboratuvarlar' ? 'selected' : ''}
               />
               <NavItem
                 name={"Test Geçmişi"}
-                link={"/"}
+                link={"/testgecmisi"}
                 onClick={() => setSelectedItem('Test Geçmişi')}
                 style={selectedItem === 'Test Geçmişi' ? 'selected' : ''}
               />
               <NavItem
                 name={"Bildirimler"}
-                link={"/"}
+                link={"/bildirimler"}
                 onClick={() => setSelectedItem('Bildirimler')}
                 style={selectedItem === 'Bildirimler' ? 'selected' : ''}
               />
               <NavItem
                 name={"Ekle"}
-                link={"/"}
+                link={"/ekle"}
                 onClick={() => setSelectedItem('Ekle')}
                 style={selectedItem === 'Ekle' ? 'selected' : ''}
               />

@@ -17,10 +17,10 @@ export default function Hero() {
       </h1>
 
       <div className="flex justify-center items-center gap-4 flex-wrap">
-        <HeroNavigation style={"hover:bg-sky-100 border-sky-100 delay-small"} text={"Test Oluştur"} />
-        <HeroNavigation style={"hover:bg-red-100 border-red-100 delay-medium"} text={"Laboratuvarları Görüntüle"} />
-        <HeroNavigation style={"hover:bg-orange-100 border-orange-100 delay-large"} text={'Test Geçmişi'}/>
-        <HeroNavigation style={"hover:bg-emerald-100 border-emerald-100 delay-xl"} text={'Bildirimler'}/>
+        <HeroNavigation style={"hover:bg-sky-100 border-sky-100 delay-small"} text={"Test Oluştur"} link={"/testolustur"} />
+        <HeroNavigation style={"hover:bg-red-100 border-red-100 delay-medium"} text={"Laboratuvarları Görüntüle"} link={"/laboratuvarlar"}/>
+        <HeroNavigation style={"hover:bg-orange-100 border-orange-100 delay-large"} text={'Test Geçmişi'} link={"/testgecmisi"}/>
+        <HeroNavigation style={"hover:bg-emerald-100 border-emerald-100 delay-xl"} text={'Bildirimler'} link={"/bildirimler"}/>
         <div className="w-full flex justify-center letter-animation delay-xxl pt-4">
           <SearchBar />
         </div>
