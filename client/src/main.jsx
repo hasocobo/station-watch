@@ -7,6 +7,10 @@ import {
 import App from "./App";
 import Hero from "./components/Pages/Hero";
 import "./index.css";
+import Login from "./components/Pages/Login";
+import { useEffect } from "react";
+
+
 
 const router = createBrowserRouter([
   {
@@ -16,9 +20,13 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Hero />
-      }
+      },
     ]
   },
+  {
+    path: "/login",
+    element: <Login />
+  }
 ])
 
 

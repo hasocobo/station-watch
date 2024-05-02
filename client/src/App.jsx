@@ -1,5 +1,7 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from './components/Header/Header';
+import { useState } from "react";
+import axios from "axios";
 const App = () => {
   return (
     <div className='relative w-full'>
