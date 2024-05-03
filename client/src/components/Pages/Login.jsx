@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    //const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const Login = () => {
             const { token } = response.data;
             localStorage.setItem('token', token);
             await console.log(response);
-            setIsLoggedIn(true);
+            //setIsLoggedIn(true);
             navigate("/");
         } catch (err) {
             console.log(err);
@@ -27,7 +27,7 @@ const Login = () => {
 
     return (
         <>
-            {isLoggedIn &&
+            {/*isLoggedIn &&*/
                 <div id="page-container" className="bg-image h-screen flex justify-center items-center">
                     <div id="main" className=''>
                         <div id="card-container" className='py-16 rounded-md shadow-md'>

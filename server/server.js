@@ -28,5 +28,5 @@ app.use(bodyParser.json());
 
 // start the Express server
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server listening on port ${PORT}\n http://localhost:5050/`);
 });
