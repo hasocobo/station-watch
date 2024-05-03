@@ -12,11 +12,7 @@ app.use("/api", labRoutes);
 app.use("/api", stationRoutes);
 
 // CONNECT DATABASE
-mongoose.connect(process.env.DATABASE, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-}).then(()=> console.log('DB connected') )
+mongoose.connect("mongodb+srv://bilgeurcukk:Ig30MVjEyr4KbbOO@cl.myvy6pd.mongodb.net/?retryWrites=true&w=majority&appName=mernj", {}).then(()=> console.log('DB connected') )
   .catch((err)=> console.log(err));
 
 
