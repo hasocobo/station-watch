@@ -7,9 +7,13 @@ app.use(bodyParser.json())
 // IMPORT ROUTES
 const labRoutes = require("./route/lab");
 const stationRoutes = require("./route/station");
+const loginRoutes = require("./route/login");
+const cors = require('cors');
 
+app.use(cors());
 app.use("/api", labRoutes);
 app.use("/api", stationRoutes);
+app.use("/api", loginRoutes);
 
 // CONNECT DATABASE
 mongoose.connect("mongodb+srv://bilgeurcukk:Ig30MVjEyr4KbbOO@cl.myvy6pd.mongodb.net/?retryWrites=true&w=majority&appName=mernj", {}).then(()=> console.log('DB connected') )
