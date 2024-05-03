@@ -3,7 +3,7 @@ import passport from "passport";
 import jwt from "jsonwebtoken";
 import bodyParser from "body-parser";
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
-
+import 'dotenv/config'
 const router = express.Router();
 
 let token = "";

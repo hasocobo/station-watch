@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import records from "./routes/api.js";
 import passport from "passport";
+import 'dotenv/config'
 
 mongoose.connect(process.env.ATLAS_URI, {
   useNewUrlParser: true,
@@ -28,6 +29,6 @@ app.use(bodyParser.json());
 
 // start the Express server
 app.listen(PORT, () => {
-  console.log(`Server listeninggg on port ${PORT}\n http://localhost:5050/`);
+  console.log(`Server listening on port ${PORT}\n http://localhost:5050/`);
 });
 
