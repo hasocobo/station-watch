@@ -30,7 +30,7 @@ const Login = () => {
             {/*isLoggedIn &&*/
                 <div id="page-container" className="bg-image h-screen flex justify-center items-center">
                     <div id="main" className=''>
-                        <div id="card-container" className='py-16 rounded-md shadow-md'>
+                        <div id="card-container" className='py-16 rounded-md shadow-lg'>
                             <div id="form-container">
                                 <div id="form">
                                     <div id="form-greeting" className='mb-4'>

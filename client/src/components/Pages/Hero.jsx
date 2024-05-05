@@ -15,7 +15,6 @@ export default function Hero() {
           <span>istiyorsun?</span>
         </p>
       </h1>
-
       <div className="flex justify-center items-center gap-4 flex-wrap">
         <HeroNavigation style={"hover:bg-sky-100 border-sky-100 delay-small"} text={"Test Oluştur"} link={"/testolustur"} />
         <HeroNavigation style={"hover:bg-red-100 border-red-100 delay-medium"} text={"Laboratuvarları Görüntüle"} link={"/laboratuvarlar"}/>
