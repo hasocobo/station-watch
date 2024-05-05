@@ -19,7 +19,7 @@ export default function Header() {
               <NavItem
                 name={"Test Oluştur"}
                 link={"/testolustur"}
-                style={/*selectedItem === 'Test Oluştur'*/ pageName === '/testolustur' ? 'selected' : ''}
+                style={pageName === '/testolustur' ? 'selected' : ''}
               />
               <NavItem
                 name={"Bekleyen Testler"}
