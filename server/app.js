@@ -8,15 +8,15 @@ const cors = require('cors')
 // IMPORT ROUTES
 const labRoutes = require("./route/lab");
 const stationRoutes = require("./route/station");
-const signupRoutes = require("./route/signup");
 const machineRoutes = require("./route/machine");
 const testRoutes = require("./route/test");
+const authRoutes = require("./route/auth");
 
 app.use("/api", labRoutes);
 app.use("/api", stationRoutes);
-app.use("/api", signupRoutes);
 app.use("/api", machineRoutes);
 app.use("/api", testRoutes);
+app.use("/api", authRoutes);
 app.use(cors())
 const connectionString ="mongodb+srv://bilgeurcukk:pE4oJ7SqzWqTFx33@cluster0.na6zjgf.mongodb.net/";
 const xyz = "mongodb+srv://kaganyalim19:TZaminz93TSS9GVw@cluster0.cg21pkx.mongodb.net/"
