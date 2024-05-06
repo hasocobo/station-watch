@@ -127,7 +127,7 @@ export default function CreateTest() {
                   value={selectedOptions.makine}
                   onChange={handleSelectChange}
                   style={"flex flex-row gap-20 items-center justify-between"}
-                  optionStyle={"w-[25rem]"}
+                  optionStyle={"w-[25rem] max-w-[25rem]"}
                 />
                 <Select
                   title={"Test Tipi"}
@@ -135,7 +135,7 @@ export default function CreateTest() {
                   name={"testTipi"}
                   value={selectedOptions.testTipi}
                   onChange={handleSelectChange} style={"flex flex-row gap-20 items-center justify-between"}
-                  optionStyle={"w-[25rem]"}
+                  optionStyle={"w-[25rem] max-w-[25rem]"}
                 />
                 <Select
                   title={"Program"}
@@ -143,7 +143,7 @@ export default function CreateTest() {
                   name={"program"}
                   value={selectedOptions.program}
                   onChange={handleSelectChange} style={"flex flex-row gap-20 items-center justify-between"}
-                  optionStyle={"w-[25rem]"}
+                  optionStyle={"w-[25rem] max-w-[25rem]"}
                 />
                 <Select
                   title={"Yükleme"}
@@ -151,7 +151,7 @@ export default function CreateTest() {
                   name={"yukleme"}
                   value={selectedOptions.yukleme}
                   onChange={handleSelectChange} style={"flex flex-row gap-20 items-center justify-between"}
-                  optionStyle={"w-[25rem]"}
+                  optionStyle={"w-[25rem] max-w-[25rem]"}
                 />
                 <Select
                   title={"Sıcaklık"}
@@ -159,7 +159,7 @@ export default function CreateTest() {
                   name={"sicaklik"}
                   value={selectedOptions.sicaklik}
                   onChange={handleSelectChange} style={"flex flex-row gap-20 items-center justify-between"}
-                  optionStyle={"w-[25rem]"}
+                  optionStyle={"w-[25rem] max-w-[25rem]"}
                 />
                 <Select
                   title={"Devir"}
@@ -167,7 +167,7 @@ export default function CreateTest() {
                   name={"devir"}
                   value={selectedOptions.devir}
                   onChange={handleSelectChange} style={"flex flex-row gap-20 items-center justify-between"}
-                  optionStyle={"w-[25rem]"}
+                  optionStyle={"w-[25rem] max-w-[25rem]"}
                 />
               </div>
               <div className="w-[45%] flex items-start justify-end">
