@@ -1,0 +1,43 @@
+const express = require('express');
+const app = express();
+require('dotenv').config();
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+const cors = require('cors')
+// IMPORT ROUTES
+const labRoutes = require("./route/lab");
+const stationRoutes = require("./route/station");
+const signupRoutes = require("./route/signup");
+const machineRoutes = require("./route/machine");
+const testRoutes = require("./route/test");
+
+app.use("/api", labRoutes);
+app.use("/api", stationRoutes);
+app.use("/api", signupRoutes);
+app.use("/api", machineRoutes);
+app.use("/api", testRoutes);
+app.use(cors())
+const connectionString ="mongodb+srv://bilgeurcukk:pE4oJ7SqzWqTFx33@cluster0.na6zjgf.mongodb.net/";
+const xyz = "mongodb+srv://kaganyalim19:TZaminz93TSS9GVw@cluster0.cg21pkx.mongodb.net/"
+
+
+// CONNECT DATABASE
+mongoose.connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+}).then(()=> console.log('DB connected') )
+  .catch((err)=> console.log(err));
+
+
+// MIDDLEWARE
+
+
+
+const port = process.env["PORT "] || 8000
+
+
+app.listen(port, ()=>{
+  console.log(`app is running on port ${port}`);
+})
