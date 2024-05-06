@@ -21,6 +21,7 @@ router.post("/signup", async (req, res) => {
 }
 );
 
+/*
 router.get("/users", async (req, res) => {
     try {
         const users = await User.find();
@@ -30,5 +31,6 @@ router.get("/users", async (req, res) => {
 
 }
 });
+*/
 
 module.exports = router;
