@@ -1,4 +1,4 @@
-const Lab = require("../models/lab");
+const Lab = require("../models/lab.js");
 
 exports.createLab = async (req, res) => {
   try {
@@ -16,6 +16,7 @@ exports.createLab = async (req, res) => {
 
 exports.getLabs = async (req, res) => {
   try {
+    
     const labs = await Lab.find();
     res.status(200).json(labs);
   } catch (error) {

@@ -14,3 +14,5 @@ const labSchema = new mongoose.Schema({
 });
 
 const Lab = mongoose.model('Lab', labSchema);
+
+module.exports = Lab;
