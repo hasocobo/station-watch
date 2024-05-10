@@ -2,7 +2,8 @@
 
 Çalıştırmak için:
 
-1) cd .\station-watch\ => npm install
-2) npm install nodemon -g
-3) cd .\station-watch\ => cd .\client\ => npm run dev
-4) new terminal => cd .\station-watch\ => cd .\server\ => nodemon --env-file=config.env server.js
+1) git clone git@github.com:hasocobo/station-watch.git
+2) cd .\station-watch\ => npm install
+3) npm install nodemon -g
+4) cd .\client\ => npm install => npm run dev
+5) new terminal => cd .\station-watch\ => cd .\server\ => npm start
