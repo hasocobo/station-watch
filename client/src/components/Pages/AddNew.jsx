@@ -1,5 +1,5 @@
 export default function AddNew() {
-  return(
+  return (
     <div>
       <h1>Bekleyen Testleri Görüntüleme Ekranı</h1>
     </div>

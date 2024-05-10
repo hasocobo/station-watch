@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 export default function HeroNavigation({ style, text, link }) {
   return (
     <Link
       to={link}
-      className={`w-[500px] h-28 border-2 transition duration-300 cursor-pointer rounded-md letter-animation delay-small ${style}`}
+      className={`letter-animation delay-small h-28 w-[500px] cursor-pointer rounded-md border-2 transition duration-300 ${style}`}
     >
-      <div className="p-4 flex justify-center items-center h-full">
+      <div className="flex h-full items-center justify-center p-4">
         <h1 className="text-large font-semibold">{text}</h1>
       </div>
     </Link>
-  );
+  )
 }

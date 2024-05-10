@@ -1,5 +1,5 @@
 export default function Notifications() {
-  return(
+  return (
     <div>
       <h1>Bildirimleri Görüntüleme Ekranı</h1>
     </div>
