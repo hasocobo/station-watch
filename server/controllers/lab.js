@@ -2,7 +2,7 @@ const Lab = require("../models/lab.js");
 
 exports.createLab = async (req, res) => {
   try {
-    const name = req.body.labName;
+    const name = req.body.name;
     const stations = req.body.stations;
     const lab = new Lab({
         name,
