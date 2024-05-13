@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const labController = require("../controllers/lab");
 
-router.post("/lab", labController.createLab);
+router.post("/labs", labController.createLab);
 router.get("/labs", labController.getLabs);
 router.get("/labs/:id", labController.getLab);
 router.put("/labs/:id", labController.updateLab);

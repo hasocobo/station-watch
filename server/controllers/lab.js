@@ -2,15 +2,17 @@ const Lab = require("../models/lab.js");
 
 exports.createLab = async (req, res) => {
   try {
-    const labName = req.body.labName;
+    const name = req.body.labName;
+    const stations = req.body.stations;
     const lab = new Lab({
-        labName,
+        name,
+        stations
 
     });
     await lab.save();
     res.status(201).json({ success: true, lab });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message:     "hehee" });
   }
 };
 
