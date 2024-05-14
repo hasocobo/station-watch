@@ -102,3 +102,9 @@ button {
     transform: translateX(101%);
   }
 }
+
+th, td {
+  padding-inline: 1rem;
+  padding-block: .75rem;
+  text-align: center;
+}
