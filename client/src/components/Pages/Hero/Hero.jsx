@@ -1,5 +1,5 @@
-import SearchBar from '../Header/SearchBar'
-import HeroNavigation from '../HeroNavigation'
+import SearchBar from '../../Header/SearchBar.jsx'
+import HeroNavigation from './HeroNavigation.jsx'
 
 export default function Hero() {
   return (
