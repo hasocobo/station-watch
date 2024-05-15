@@ -106,7 +106,10 @@ export default function PendingTests({ pendingTests = exampleData }) {
         </thead>
         <tbody>
           {data.map((item) => (
-            <tr key={item.id} className="border-b">
+            <tr
+              key={item.id}
+              className="border-b transition duration-200 hover:bg-stone-50"
+            >
               <td></td>
               <td>{item.id}</td>
               <td>{item.projectName}</td>
