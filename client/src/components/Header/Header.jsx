@@ -2,6 +2,11 @@ import { Link, useLocation } from 'react-router-dom'
 import NavItem from './NavItem'
 import Logo from '../../../src/assets/logo2.png'
 import { useState } from 'react'
+import Avatar from './Avatar'
+
+const exampleUser = {
+  name: 'Hasan'
+}
 
 export default function Header() {
   let pageName = useLocation().pathname
@@ -14,41 +19,41 @@ export default function Header() {
             <Link to={'/'} className="hover:cursor-pointer">
               <img src={Logo} alt="station watch logo" className="w-32" />
             </Link>
-            <div className="flex w-full items-center justify-center gap-4">
-              <NavItem
-                name={'Test Oluştur'}
-                link={'/testolustur'}
-                style={pageName === '/testolustur' ? 'selected' : ''}
-              />
-              <NavItem
-                name={'Bekleyen Testler'}
-                link={'/bekleyentestler'}
-                style={pageName === '/bekleyentestler' ? 'selected' : ''}
-              />
-              <NavItem
-                name={'Laboratuvarlar'}
-                link={'/laboratuvarlar'}
-                style={pageName === '/laboratuvarlar' ? 'selected' : ''}
-              />
-              <NavItem
-                name={'Test Geçmişi'}
-                link={'/testgecmisi'}
-                style={pageName === '/testgecmisi' ? 'selected' : ''}
-              />
-              <NavItem
-                name={'Bildirimler'}
-                link={'/bildirimler'}
-                style={pageName === '/bildirimler' ? 'selected' : ''}
-              />
-              <NavItem
-                name={'Ekle'}
-                link={'/ekle'}
-                style={pageName === '/ekle' ? 'selected' : ''}
-              />
+            <div className="flex w-full items-center justify-center">
+              <div className='flex gap-4'>
+                <NavItem
+                  name={'Test Oluştur'}
+                  link={'/testolustur'}
+                  style={pageName === '/testolustur' ? 'selected' : ''}
+                />
+                <NavItem
+                  name={'Bekleyen Testler'}
+                  link={'/bekleyentestler'}
+                  style={pageName === '/bekleyentestler' ? 'selected' : ''}
+                />
+                <NavItem
+                  name={'Laboratuvarlar'}
+                  link={'/laboratuvarlar'}
+                  style={pageName === '/laboratuvarlar' ? 'selected' : ''}
+                />
+                <NavItem
+                  name={'Test Geçmişi'}
+                  link={'/testgecmisi'}
+                  style={pageName === '/testgecmisi' ? 'selected' : ''}
+                />
+                <NavItem
+                  name={'Bildirimler'}
+                  link={'/bildirimler'}
+                  style={pageName === '/bildirimler' ? 'selected' : ''}
+                />
+                <NavItem
+                  name={'Ekle'}
+                  link={'/ekle'}
+                  style={pageName === '/ekle' ? 'selected' : ''}
+                />
+              </div>
             </div>
-            <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-[50%] border bg-sky-50 hover:cursor-pointer">
-              <div className="absolute">A</div>
-            </div>
+            <Avatar user={exampleUser} />
           </div>
         </div>
       </div>
