@@ -12,7 +12,7 @@ exports.createLab = async (req, res) => {
     await lab.save();
     res.status(201).json({ success: true, lab });
   } catch (error) {
-    res.status(400).json({ message:     "hehee" });
+    res.status(400).json({ message: error.message });
   }
 };
 

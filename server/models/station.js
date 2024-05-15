@@ -8,10 +8,6 @@ const stationSchema = new mongoose.Schema({
   isAvaliable: {
     type: Boolean,
     default: true,
-  },
-  lab: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Lab",
   }
 });
 

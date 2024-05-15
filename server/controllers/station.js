@@ -1,24 +1,29 @@
 const Station = require("../models/station");
 const Lab = require("../models/lab");
 
+
 exports.createStation = async (req, res) => {
   try {
     const labId = req.params.labid;
-    const name = req.body.name;
+    const { name } = req.body;
     const station = new Station({
-        name,
-        lab: labId,
+        name
     });
+
     const lab = await Lab.findById(labId);
+    
     if (!lab) {
       return res.status(404).json({ message: "Lab not found" });
     }
-    lab.stations.push(station);
-    await station.save();
+
+
+    lab.stations.push(station.id);
 
     await lab.save();
+    await station.save();
     res.status(201).json(station);
   } catch (error) {
+    console.error(error); // Log to console for debugging
     res.status(400).json({ message: error.message });
   }
 };
