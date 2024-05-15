@@ -104,7 +104,7 @@ input {
   left: 2px;
   overflow: visible;
 }
-div label {
+#page-container div label {
   color: var(--tertiary-text-color);
   visibility: visible;
   position: relative;
@@ -114,7 +114,7 @@ div label {
   pointer-events: none;
   transition: 0.3s ease;
 }
-div input {
+#page-container div input {
   display: block;
   width: 100%;
   border-bottom: 1px solid #9ca3af;
@@ -125,18 +125,18 @@ div input {
   font-size: 1rem;
 }
 
-div input::placeholder {
+#page-container div input::placeholder {
   color: var(--tertiary-text-color);
   font-size: 1rem;
   visibility: hidden;
 }
 
-div input:focus {
+#page-container div input:focus {
   outline: none;
 }
 
-div input:focus + label,
-div input:not(:placeholder-shown) + label {
+#page-container div input:focus + label,
+#page-container div input:not(:placeholder-shown) + label {
   outline: none;
   font-size: 1rem;
   position: relative;

@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
 import Icon from '../../Icon/Icon'
+import Select from '../CreateTest/Select'
 
-const labs = [{ name: 'Lab 1' }, { name: 'Ömür Labı' }, { name: 'Lab 99' }]
+const labs = [
+  { name: 'Lab 1', id: 101 },
+  { name: 'Ömür Labı', id: 102 },
+  { name: 'Lab 99', id: 103 }
+]
 
 const stations = [
-  { name: '35' },
-  { name: '31' },
-  { name: '33' },
-  { name: 'Sıraya Gir' }
+  { name: '15', id: 6565652 },
+  { name: '25', id: 6546565465 },
+  { name: '55', id: 65454664564 }
 ]
 
 const exampleData = [
@@ -16,8 +20,8 @@ const exampleData = [
     projectName: 'Test',
     createdBy: 'Hasan',
     creationDate: '26/05/2024',
-    labAssignment: {},
-    stationAssignment: {},
+    labAssignment: labs,
+    stationAssignment: stations,
     assigned: false
   },
   {
@@ -25,8 +29,8 @@ const exampleData = [
     projectName: 'Random',
     createdBy: 'Atakan',
     creationDate: '27/05/2024',
-    labAssignment: {},
-    stationAssignment: {},
+    labAssignment: labs,
+    stationAssignment: stations,
     assigned: false
   },
   {
@@ -34,8 +38,8 @@ const exampleData = [
     projectName: 'Aquila',
     createdBy: 'Cüneyt',
     creationDate: '25/05/2024',
-    labAssignment: {},
-    stationAssignment: {},
+    labAssignment: labs,
+    stationAssignment: stations,
     assigned: false
   },
   {
@@ -43,8 +47,8 @@ const exampleData = [
     projectName: 'Amet ',
     createdBy: 'Ali',
     creationDate: '23/05/2024',
-    labAssignment: {},
-    stationAssignment: {},
+    labAssignment: labs,
+    stationAssignment: stations,
     assigned: false
   },
   {
@@ -52,8 +56,8 @@ const exampleData = [
     projectName: 'Dolor sit',
     createdBy: 'Veli',
     creationDate: '21/05/2024',
-    labAssignment: {},
-    stationAssignment: {},
+    labAssignment: labs,
+    stationAssignment: stations,
     assigned: false
   },
   {
@@ -61,8 +65,8 @@ const exampleData = [
     projectName: 'Lorem ipsum ',
     createdBy: 'Berat',
     creationDate: '28/05/2024',
-    labAssignment: {},
-    stationAssignment: {},
+    labAssignment: labs,
+    stationAssignment: stations,
     assigned: false
   }
 ]
@@ -115,27 +119,23 @@ export default function PendingTests({ pendingTests = exampleData }) {
               <td>{item.projectName}</td>
               <td>{item.createdBy}</td>
               <td>{item.creationDate}</td>
-              <td>
-                <select
-                  className="block w-full rounded-md bg-blue-50 px-4 py-3"
-                  defaultValue={item.labAssignment}
-                >
-                  <option value="lab1">Lab 1</option>
-                  <option value="lab2">Lab 2</option>
-                </select>
+              <td className='w-60'>
+                <Select
+                  optionStyle={'w-full max-w-full py-3 px-4'}
+                  options={item.labAssignment}
+                  id={item.id}
+                />
               </td>
-              <td>
-                <select
-                  className="block w-full rounded-md bg-blue-50 px-4 py-3"
-                  defaultValue={item.stationAssignment}
-                >
-                  <option value="station1">Station 1</option>
-                  <option value="station2">Station 2</option>
-                </select>
+              <td className='w-60'>
+                <Select
+                  optionStyle={'w-full max-w-full px-4 py-3'}
+                  options={item.stationAssignment}
+                  id={item.id}
+                />
               </td>
               <td className="px-0 py-0">
                 <button
-                  className={`h-12 w-28 rounded-md text-sm font-semibold
+                  className={`h-10 w-28 rounded-sm text-sm font-semibold
                   text-white transition duration-300 hover:bg-green-500 
                   ${item.assigned === true ? ` bg-stone-200 hover:bg-stone-300` : ` bg-green-400 hover:bg-green-500`}`}
                   onClick={() => assignJob(item)}

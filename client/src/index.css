@@ -84,5 +84,5 @@ main:not(.icon) {
 }
 
 .selected {
-  background-color: #e0f2fe;
+  background-color: rgb(226 232 240);
 }
