@@ -30,7 +30,6 @@ const xyz = "mongodb+srv://kaganyalim19:TZaminz93TSS9GVw@cluster0.cg21pkx.mongod
 mongoose.connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
 }).then(()=> console.log('DB connected') )
   .catch((err)=> console.log(err));
 

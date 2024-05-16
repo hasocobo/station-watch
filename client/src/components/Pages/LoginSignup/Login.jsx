@@ -33,56 +33,71 @@ const Login = () => {
         /*isLoggedIn &&*/
         <div
           id="page-container"
-          className="bg-image flex h-screen items-center justify-center"
+          className="bg-image flex h-screen items-center justify-center bg-transparent"
         >
-          <div id="main" className="">
-            <div id="card-container" className="rounded-md py-16 shadow-lg">
+          <div id="main" className="rounded-lg">
+            <div
+              id="card-container"
+              className="mx-auto flex rounded-lg shadow-sm ring-1 ring-slate-900/5"
+            >
               <div id="form-container">
                 <div id="form">
-                  <div id="form-greeting" className="mb-4">
-                    <h1 className="">Merhaba!</h1>
-                    <h2 className="text-sky-200">
+                  <div
+                    id="form-greeting"
+                    className="rounded-t-lg bg-stone-50 px-16 py-6 text-center"
+                  >
+                    <h1 className="text-slate-700">Merhaba!</h1>
+                    <h2 className="text-slate-400">
                       {"StationWatch'a hoşgeldin!"}
                     </h2>
                   </div>
-                  <form onSubmit={handleSubmit}>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="rounded-b-lg bg-white px-16 pb-10 pt-8"
+                  >
                     <fieldset>
                       <div>
-                        <input
-                          type="text"
-                          id="username"
-                          name="username"
-                          value={username}
-                          onChange={(e) => setUsername(e.target.value)}
-                          minLength="3"
-                          maxLength="20"
-                          placeholder=" "
-                          required
-                        />
-                        <label htmlFor="username">Kullanıcı Adı</label>
+                        <div>
+                          <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            minLength="3"
+                            maxLength="20"
+                            placeholder=" "
+                            required
+                          />
+                          <label htmlFor="username">Kullanıcı Adı</label>
+                        </div>
+                        <div>
+                          <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            minLength="6"
+                            maxLength="20"
+                            placeholder=" "
+                            required
+                          />
+                          <label htmlFor="password">Şifre</label>
+                        </div>
                       </div>
-                      <div>
-                        <input
-                          type="password"
-                          id="password"
-                          name="password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          minLength="6"
-                          maxLength="20"
-                          placeholder=" "
-                          required
-                        />
-                        <label htmlFor="password">Şifre</label>
-                      </div>
+
                       <div className="button">
-                        <button type="submit" className="mb-4 rounded-lg">
+                        <button
+                          type="submit"
+                          className="mb-2 rounded-md bg-blue-400 hover:bg-blue-500"
+                        >
                           Giriş Yap
                         </button>
                       </div>
                       <div>
                         Şifreni mi unuttun?{' '}
-                        <a href="#" className="text-blue-300">
+                        <a href="#" className="font-semibold text-blue-300">
                           Şifreni Yenile
                         </a>
                       </div>
