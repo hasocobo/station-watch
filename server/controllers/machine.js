@@ -48,6 +48,22 @@ exports.assignMachineToStation = async (req, res) => {
     }
 }
 
+exports.unassignMachineFromStation = async (req, res) => {
+    try {
+        const machine = await Machine.findById(req.params.machineId);
+        const station = await Station.findById(req.params.stationId);
+        if (!machine || !station) {
+            return res.status(404).json({ message: "Machine or station not found" });
+        }
+        machine.station = null;
+        station.isAvaliable = true;
+        await machine.save();
+        res.status(200).json({ success: true, machine });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+
 exports.deleteMachine = async (req, res) => {
     try {
         const machine = await Machine.findByIdAndDelete(req.params.id);

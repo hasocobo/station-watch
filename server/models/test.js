@@ -1,11 +1,22 @@
 const mongoose = require("mongoose");
 const testSchema = new mongoose.Schema({
-  type: {
+  program: {
     type: String,
-    required: [true, "Type cannot be empty"],
+    required: [true, "Program cannot be empty"],
   },
-  description: {
+  degree: {
+    type: Number,
+    enum: [20, 30, 40, 60, 90],
+    required: [true, "Degree cannot be empty"],
+  },
+  load: {
+    type: Number,
+    enum : [0.25, 0.5, 0.75, 1],
+    required: [true, "Load cannot be empty"],
+  },
+  testType: {
     type: String,
+    required: [true, "KontrolSistemi-DinamikGrup-DevirBilgisi şeklinde giriniz."]
   },
   status:{
     type: String,
@@ -58,6 +69,7 @@ const testSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   }
+
 });
 
 module.exports = mongoose.model("Test", testSchema);
