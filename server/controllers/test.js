@@ -5,14 +5,17 @@ const User = require("../models/user");
 
 exports.createTest = async (req, res) => {
     try {
-        const creationBy = req.params.userId;
+
+      //  const creationBy = req.body.userId;
         const test = new Test({
             ...req.body,
-            creationBy: creationBy,
         });
         await test.save();
         res.status(201).json({ success: true, test });
-    } catch (error) {
+    
+    } 
+    
+    catch (error) {
         res.status(400).json({ message: error.message });
     }
 }
