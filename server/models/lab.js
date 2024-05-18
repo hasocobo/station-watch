@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const labSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: [true , 'Please provide a name'],
         unique: true,
         minlength: 3
     },
