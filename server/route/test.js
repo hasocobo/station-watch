@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const testController = require("../controllers/test");
-const authController = require("../controllers/auth");
+const authController = require("../controllers/user");
 
 
 router.post("/tests",authController.authenticateJWT, authController.extractUserId,testController.createTest);

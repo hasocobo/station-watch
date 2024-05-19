@@ -60,13 +60,14 @@ export default function CreateTest() {
             <div className="flex grow flex-col gap-20">
               <Select
                 title={
-                  'Başlatılmış projeye test ataması için seçiniz (aquila id)'
+                  'Aquila ID Seçiniz'
                 }
                 name={'aquilaId'}
                 value={selectedOptions.aquilaId}
                 onChange={handleSelectChange}
                 options={aquilaIds}
                 style={'flex gap-2 flex-col'}
+                optionStyle={'w-[40rem]'}
               />
               <Select
                 title={'Laboratuvar Seçiniz'}
@@ -75,6 +76,7 @@ export default function CreateTest() {
                 onChange={handleSelectChange}
                 options={labs}
                 style={'flex gap-2 flex-col'}
+                optionStyle={'w-[40rem]'}
               />
               <Select
                 title={'İstasyon Seçiniz'}
@@ -83,6 +85,7 @@ export default function CreateTest() {
                 onChange={handleSelectChange}
                 options={stations}
                 style={'flex gap-2 flex-col'}
+                optionStyle={'w-[40rem]'}
               />
             </div>
             <div
@@ -91,7 +94,7 @@ export default function CreateTest() {
             >
               <Button
                 style={
-                  'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-lg'
+                  'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
                 }
                 name={'İleri'}
               />
@@ -182,7 +185,7 @@ export default function CreateTest() {
               <div className="" onClick={() => setStep(step - 1)}>
                 <Button
                   style={
-                    'w-40 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-lg'
+                    'w-40 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-sm'
                   }
                   name={'Geri'}
                 />
@@ -190,7 +193,7 @@ export default function CreateTest() {
               <div className="" onClick={() => setStep(step + 1)}>
                 <Button
                   style={
-                    'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-lg'
+                    'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
                   }
                   name={'İleri'}
                 />
@@ -275,7 +278,7 @@ export default function CreateTest() {
               <div className="" onClick={() => setStep(step - 1)}>
                 <Button
                   style={
-                    'w-40 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-lg'
+                    'w-40 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-sm'
                   }
                   name={'Geri'}
                 />
@@ -283,7 +286,7 @@ export default function CreateTest() {
               <div className="" onClick={() => setStep(step + 1)}>
                 <Button
                   style={
-                    'w-40 bg-green-300 text-[1.1rem] font-semibold text-sm hover:bg-green-400 rounded-lg'
+                    'w-40 bg-green-300 text-[1.1rem] font-semibold text-sm hover:bg-green-400 rounded-sm'
                   }
                   name={'Onayla'}
                 />

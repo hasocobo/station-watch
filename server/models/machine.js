@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const machineSchema = new mongoose.Schema({
   model: {
     type: String,
@@ -14,6 +15,7 @@ const machineSchema = new mongoose.Schema({
   station: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Station",
+    default: null,
   },
   components: [
     {

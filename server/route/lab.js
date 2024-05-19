@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const labController = require("../controllers/lab");
-const authController = require("../controllers/auth");
+const authController = require("../controllers/user");
 
 router.post("/labs", authController.extractUserId,authController.authenticateJWT,labController.createLab);
 router.get("/labs", authController.authenticateJWT,labController.getLabs);
