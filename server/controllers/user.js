@@ -115,8 +115,7 @@ exports.extractUserId = async (req,res,next) => {
   
     const token = authHeader.split(' ')[1];
     const payload = jwt.verify(token, secretKey);
-    req.userId = payload.id; // Attach the userId to the req object
-
+    req.userId = payload.id; 
 
     next();
 }
