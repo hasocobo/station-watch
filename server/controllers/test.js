@@ -6,10 +6,14 @@ const User = require("../models/user");
 exports.createTest = async (req, res) => {
     try {
 
-      //  const creationBy = req.body.userId;
+        const token = req.headers.authorization.split(' ')[1];;
+        req.body.creationBy = await User.findById(req.userId);
         const test = new Test({
             ...req.body,
         });
+
+        console.log(token);
+
         await test.save();
         res.status(201).json({ success: true, test });
     
@@ -32,6 +36,7 @@ exports.getTests = async (req, res) => {
 exports.getTest = async (req, res) => {
     try {
         const test = await Test.findById(req.params.id).populate("machine").populate("creationBy").populate("lastModifiedBy");
+
         if (!test) {
             return res.status(404).json({ message: "Test not found" });
         }

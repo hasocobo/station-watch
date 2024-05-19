@@ -34,6 +34,7 @@ exports.login = async (req, res) => {
 
         const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '15m' });
 
+       //res.cookie('jwt',token);
         res.status(200).json({ success: true, user, token });
 
     } catch (error) {
@@ -60,3 +61,18 @@ exports.authenticateJWT = async (req, res, next) => {
        next();
     });
   };
+
+exports.extractUserId = async (req,res,next) => {
+    const authHeader = req.headers.authorization;
+  
+    if (!authHeader) {
+      return res.status(403).json({ message: 'Token required' });
+    }
+  
+    const token = authHeader.split(' ')[1];
+    const payload = jwt.verify(token, secretKey);
+    req.userId = payload.id; // Attach the userId to the req object
+
+
+    next();
+}

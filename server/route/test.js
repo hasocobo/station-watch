@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const testController = require("../controllers/test");
+const authController = require("../controllers/auth");
 
-router.post("/tests", testController.createTest);
+
+router.post("/tests",authController.authenticateJWT, authController.extractUserId,testController.createTest);
 router.get("/tests", testController.getTests);
 router.get("/tests/:id", testController.getTest);
 router.put("/tests/:id/:userId", testController.updateTest);
