@@ -38,12 +38,11 @@ const testSchema = new mongoose.Schema({
   lastModifiedDate: {
         type: Date,
   },
-  machine: [
+  machine: 
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Machine",
     },
-  ],
   sw: {
     type: String,
     default: "",
