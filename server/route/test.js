@@ -10,24 +10,6 @@ router.get("/tests/:id",authController.authenticateJWT, testController.getTest);
 router.put("/tests/:id",authController.authenticateJWT, authController.extractUserId,testController.updateTest);
 
 
-
-
-/*
-/tests/:id/stopTest
-/tests/:id/finish
-/tests/:id/assign
-
-/startTest/:id/:machineId
-/finishTest/:id
-/stopTest/:id
-/assigntest/:id/:machineId
-/test/:id
-
-*/
-
-
-
-
 router.put("/tests/:id/start", testController.startTest);
 router.put("/tests/:id/finish", testController.finishTest);
 router.put("/tests/:id/stop", testController.stopTest);

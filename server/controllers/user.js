@@ -86,7 +86,6 @@ exports.deleteUser = async (req, res) => {
 }
 
 
-
 exports.authenticateJWT = async (req, res, next) => {
     const authHeader = req.headers.authorization;
   
@@ -99,23 +98,34 @@ exports.authenticateJWT = async (req, res, next) => {
   
     jwt.verify(token, secretKey, (err, user) => {
       if (err) {
+        if (err.name === 'TokenExpiredError') {
+            return res.status(401).json({ message: 'Token expired' });
+          }
         return res.status(403).json({ message: 'Invalid token' });
       }
       req.user = user;
-       next();
+      next();
     });
   };
 
-exports.extractUserId = async (req,res,next) => {
+exports.extractUserId = async (req, res, next) => {
     const authHeader = req.headers.authorization;
-  
-    if (!authHeader) {
-      return res.status(403).json({ message: 'Token required' });
-    }
-  
-    const token = authHeader.split(' ')[1];
-    const payload = jwt.verify(token, secretKey);
-    req.userId = payload.id; 
 
-    next();
-}
+    if (!authHeader) {
+        return res.status(403).json({ message: 'Token required' });
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    try {
+        const payload = jwt.verify(token, secretKey);
+        console.log(payload.id);
+        req.userId = payload.id;
+        next();
+    } catch (err) {
+        if (err.name === 'TokenExpiredError') {
+        return res.status(401).json({ message: 'Token expired' });
+        }
+        return res.status(403).json({ message: 'Invalid token' });
+    }
+};
