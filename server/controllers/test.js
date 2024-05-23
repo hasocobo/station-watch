@@ -8,6 +8,7 @@ exports.createTest = async (req, res) => {
 
         const token = req.headers.authorization.split(' ')[1];;
         req.body.creationBy = await User.findById(req.userId);
+        
         const test = new Test({
             ...req.body,
         });
@@ -70,17 +71,23 @@ exports.startTest = async (req, res) => {
     try {
         const test = await Test.findById(req.params.id);
         const machine = await Machine.findById(test.machine);
+
         if (!test) {
             return res.status(404).json({message: "Test not found"});
         }
 
         if( !machine){
             return res.status(400).json({message: "Please assign a machine first."});
-
         }
+
+        if(test.status = "active"){
+            return res.status(400).json({message: "Test is already in start state"});
+        }
+
+
         test.status = "active";
         machine.tests.push(test);
-        test.machine = machine;
+        test.machine = machine; 
 
         await test.save();
         //await machine.save();
@@ -93,9 +100,18 @@ exports.startTest = async (req, res) => {
 exports.finishTest = async (req, res) => {
     try {
         const test = await Test.findById(req.params.id);
+
+
         if (!test) {
             return res.status(404).json({message: "Test not found"});
         }
+
+        if(test.status = "finished"){
+            return res.status(400).json({message: "Test is already in finished state"});
+        }
+
+
+        test.machine = null;
         test.status = "finished";
         await test.save();
         res.status(200).json({success: true, test});
@@ -127,10 +143,13 @@ exports.assignTestToMachine = async (req, res) => {
         }
 
         console.log(machine.tests.indexOf(test.id));
-       // tekrar tekrar eklememek için
+       
+
         test.machine = machine;
         if (machine.tests.indexOf(test.id) == -1){
             machine.tests.push(test);
+        }else{
+            return res.status(400).json({message: "Test is already assigned to machine"});
         }
 
         console.log("");

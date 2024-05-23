@@ -1,8 +1,14 @@
 const Component = require("../models/component");
+const User = require("../models/user");
+
 
 exports.createComponent = async (req, res) => {
   try {
-    const component = new Component(req.body);
+
+    //const token = req.headers.authorization.split(' ')[1];;
+    req.body.creationBy = await User.findById(req.userId);
+    const component = new Component({...req.body});
+
     await component.save();
     res.status(201).json({ success: true, component });
   } catch (error) {

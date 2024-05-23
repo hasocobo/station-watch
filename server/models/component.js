@@ -11,9 +11,8 @@ const componentSchema = new mongoose.Schema({
     },
     creationBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
+        ref: "User"
+      },
     lastModifiedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
