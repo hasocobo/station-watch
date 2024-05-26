@@ -99,12 +99,12 @@ export default function PendingTests({ pendingTests = exampleData }) {
         <thead className="bg-stone-50">
           <tr className="border-b">
             <th></th>
-            <th>Aquila ID</th>
+            <th>Test ID</th>
             <th>Project Name</th>
             <th>Created By</th>
             <th>Creation Date</th>
             <th>Lab Assignment</th>
-            <th>Station Assignment</th>
+            <th>Machine Assignment</th>
             <th></th>
           </tr>
         </thead>

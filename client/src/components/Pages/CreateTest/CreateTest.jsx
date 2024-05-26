@@ -51,17 +51,20 @@ export default function CreateTest() {
 
   const renderSwitch = () => {
     switch (step) {
-      case 1:
+      case 2:
         return (
           <div className="relative flex h-full flex-col justify-between">
             <div className="absolute left-0 right-0 top-[-50px] flex w-full justify-center">
-              ⚫○○
+              <div className="h-1 w-80 rounded-lg border bg-sky-50">
+                <div
+                  className="h-1 rounded-md bg-sky-300"
+                  style={{ width: '67%' }}
+                ></div>
+              </div>
             </div>
             <div className="flex grow flex-col gap-20">
               <Select
-                title={
-                  'Aquila ID Seçiniz'
-                }
+                title={'Test ID Seçiniz'}
                 name={'aquilaId'}
                 value={selectedOptions.aquilaId}
                 onChange={handleSelectChange}
@@ -88,24 +91,36 @@ export default function CreateTest() {
                 optionStyle={'w-[40rem]'}
               />
             </div>
-            <div
-              className="flex justify-end "
-              onClick={() => setStep(step + 1)}
-            >
-              <Button
-                style={
-                  'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
-                }
-                name={'İleri'}
-              />
+            <div className="flex justify-between">
+              <div className="" onClick={() => setStep(step - 1)}>
+                <Button
+                  style={
+                    'w-40 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-sm'
+                  }
+                  name={'Geri'}
+                />
+              </div>
+              <div className="" onClick={() => setStep(step + 1)}>
+                <Button
+                  style={
+                    'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
+                  }
+                  name={'İleri'}
+                />
+              </div>
             </div>
           </div>
         )
-      case 2:
+      case 1:
         return (
           <div className="relative flex h-full flex-col justify-between">
             <div className="absolute left-0 right-0 top-[-50px] flex w-full justify-center">
-              ○⚫○
+              <div className="h-1 w-80 rounded-lg border bg-sky-50">
+                <div
+                  className="h-1 rounded-md bg-sky-300"
+                  style={{ width: '33%' }}
+                ></div>
+              </div>
             </div>
             <div className="flex grow">
               <div className="flex w-[55%] flex-col gap-10">
@@ -181,23 +196,16 @@ export default function CreateTest() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between">
-              <div className="" onClick={() => setStep(step - 1)}>
-                <Button
-                  style={
-                    'w-40 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-sm'
-                  }
-                  name={'Geri'}
-                />
-              </div>
-              <div className="" onClick={() => setStep(step + 1)}>
-                <Button
-                  style={
-                    'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
-                  }
-                  name={'İleri'}
-                />
-              </div>
+            <div
+              className="flex justify-end "
+              onClick={() => setStep(step + 1)}
+            >
+              <Button
+                style={
+                  'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
+                }
+                name={'İleri'}
+              />
             </div>
           </div>
         )
@@ -205,7 +213,12 @@ export default function CreateTest() {
         return (
           <div className="relative flex h-full flex-col justify-between ">
             <div className="absolute left-0 right-0 top-[-50px] flex w-full justify-center">
-              ○○⚫
+              <div className="h-1 w-80 rounded-lg border bg-sky-50">
+                <div
+                  className="h-1 rounded-md bg-green-600"
+                  style={{ width: '99%' }}
+                ></div>
+              </div>
             </div>
             <div className="grow">
               <div className="flex h-full">
