@@ -7,11 +7,11 @@ export default function StationCard({
   textColor
 }) {
   return (
-    <div className="rounded-md border bg-white shadow-md transition-shadow duration-200 hover:shadow-xl">
-      <div className=" bg-zinc-50 p-6 text-center text-xl font-semibold text-slate-700">
+    <div className="rounded-md border flex flex-col bg-white shadow-md transition-shadow duration-200 hover:shadow-xl">
+      <div className=" bg-zinc-50 px-6 py-5 text-center text-xl font-semibold text-slate-700">
         {title}
       </div>
-      <div className="px-6 pb-6 pt-3">
+      <div className="px-6 pb-6 pt-3 flex grow flex-col">
         {cycles && (
           <div className="mb-4 flex items-center justify-center gap-1 text-center text-lg font-semibold text-slate-600">
             <i className="material-symbols-outlined text-slate-500">cycle</i>
@@ -29,7 +29,7 @@ export default function StationCard({
           </div>
         )}
         <div
-          className={`mt-auto rounded-md py-2 text-center font-semibold ${statusColor} ${textColor}`}
+          className={`mt-auto rounded-md py-2 flex justify-center items-center font-semibold ${statusColor} ${textColor}`}
         >
           {status}
         </div>{' '}
