@@ -1,12 +1,14 @@
+import { useUser } from '../../Context/UserProvider.jsx'
 import SearchBar from '../../Header/SearchBar.jsx'
 import HeroNavigation from './HeroNavigation.jsx'
 
 export default function Hero() {
+  const { user } = useUser();
   return (
     <div className="mx-auto max-w-7xl">
       <h1 className="flex justify-center py-20 text-5xl leading-normal">
         <p className="letter-animation text-center">
-          <span>Hoşgeldin</span> <span className="text-sky-400">Atakan, </span>
+          <span>Hoşgeldin</span> <span className="text-sky-400">{user.name.split(" ")[0]}, </span>
           <br />
           <span className="">ne</span> <span className=""> yapmak </span>
           <span>istiyorsun?</span>

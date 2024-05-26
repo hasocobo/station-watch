@@ -1,14 +1,12 @@
 import { Link, useLocation } from 'react-router-dom'
 import NavItem from './NavItem'
 import Logo from '../../../src/assets/logo2.png'
-import { useState } from 'react'
 import Avatar from './Avatar'
+import { useUser } from '../Context/UserProvider'
 
-const exampleUser = {
-  name: 'Hasan'
-}
 
 export default function Header() {
+  const { user } = useUser();
   let pageName = useLocation().pathname
 
   return (
@@ -53,7 +51,7 @@ export default function Header() {
                 />
               </div>
             </div>
-            <Avatar user={exampleUser} />
+            <Avatar user={user} />
           </div>
         </div>
       </div>
