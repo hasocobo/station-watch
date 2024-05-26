@@ -2,7 +2,7 @@ export default function UserIcon({ onClick, user }) {
   return (
     <div onClick={onClick}>
       <div
-        onClick={() => setExpanded(!expanded)}
+        onClick={onClick}
         className="relative flex h-12 w-12 shrink-0 items-center 
         justify-center rounded-[50%] border bg-sky-50 hover:cursor-pointer
         "

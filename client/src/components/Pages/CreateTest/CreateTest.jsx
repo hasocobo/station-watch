@@ -216,7 +216,7 @@ export default function CreateTest() {
               <div className="h-1 w-80 rounded-lg border bg-sky-50">
                 <div
                   className="h-1 rounded-md bg-green-600"
-                  style={{ width: '99%' }}
+                  style={{ width: '100%' }}
                 ></div>
               </div>
             </div>

@@ -4,9 +4,8 @@ import Logo from '../../../src/assets/logo2.png'
 import Avatar from './Avatar'
 import { useUser } from '../Context/UserProvider'
 
-
 export default function Header() {
-  const { user } = useUser();
+  const { user } = useUser()
   let pageName = useLocation().pathname
 
   return (
@@ -18,7 +17,7 @@ export default function Header() {
               <img src={Logo} alt="station watch logo" className="w-32" />
             </Link>
             <div className="flex w-full items-center justify-center">
-              <div className='flex gap-4'>
+              <div className="flex gap-4">
                 <NavItem
                   name={'Test Oluştur'}
                   link={'/testolustur'}
@@ -30,19 +29,14 @@ export default function Header() {
                   style={pageName === '/bekleyentestler' ? 'selected' : ''}
                 />
                 <NavItem
-                  name={'Laboratuvarlar'}
-                  link={'/laboratuvarlar'}
-                  style={pageName === '/laboratuvarlar' ? 'selected' : ''}
-                />
-                <NavItem
                   name={'Test Geçmişi'}
                   link={'/testgecmisi'}
                   style={pageName === '/testgecmisi' ? 'selected' : ''}
                 />
                 <NavItem
-                  name={'Bildirimler'}
-                  link={'/bildirimler'}
-                  style={pageName === '/bildirimler' ? 'selected' : ''}
+                  name={'Laboratuvarlar'}
+                  link={'/laboratuvarlar'}
+                  style={pageName === '/laboratuvarlar' ? 'selected' : ''}
                 />
                 <NavItem
                   name={'Ekle'}

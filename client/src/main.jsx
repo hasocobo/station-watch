@@ -1,11 +1,10 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom'
 import App from './App'
 import Hero from './components/Pages/Hero/Hero.jsx'
 import './index.css'
 import Login from './components/Pages/LoginSignup/Login.jsx'
-import { useEffect } from 'react'
 import CreateTest from './components/Pages/CreateTest/CreateTest.jsx'
 import PendingTests from './components/Pages/PendingTests/PendingTests.jsx'
 import Labs from './components/Pages/Labs/Labs.jsx'
@@ -13,12 +12,13 @@ import TestHistory from './components/Pages/TestHistory/TestHistory.jsx'
 import Notifications from './components/Pages/Notifications/Notifications.jsx'
 import AddNew from './components/Pages/AddNew/AddNew.jsx'
 import UserProvider from './components/Context/UserProvider.jsx'
+import RestrictedView from './components/Pages/LoginSignup/RestrictedView.jsx'
 
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: localStorage.getItem('token') ? <App /> : <Navigate to={"/login"} /> ,
     children: [
       {
         path: '',

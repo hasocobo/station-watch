@@ -47,7 +47,7 @@ export default function Avatar({ user }) {
                 </i>
                 <p className='text-slate-600'>Your Profile</p>
               </Link>
-              <Link to={``} className='flex py-3 px-5 items-center gap-2 hover:bg-sky-50'>
+              <Link to={`/login`} onClick={() => localStorage.clear()} className='flex py-3 px-5 items-center gap-2 hover:bg-sky-50'>
                 <i className="material-icons text-slate-400">
                   logout
                 </i>

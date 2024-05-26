@@ -12,6 +12,7 @@ const machineRoutes = require("./route/machine");
 const testRoutes = require("./route/test");
 const userRoutes = require("./route/user");
 const componentRoutes = require("./route/component");
+app.use(cors())
 
 app.use("/api", labRoutes);
 app.use("/api", stationRoutes);
@@ -20,7 +21,6 @@ app.use("/api", testRoutes);
 app.use("/api", userRoutes);
 app.use("/api", componentRoutes);
 
-app.use(cors())
 const connectionString ="mongodb+srv://bilgeurcukk:pE4oJ7SqzWqTFx33@cluster0.na6zjgf.mongodb.net/"
 const xyz = "mongodb+srv://kaganyalim19:TZaminz93TSS9GVw@cluster0.cg21pkx.mongodb.net/"
 

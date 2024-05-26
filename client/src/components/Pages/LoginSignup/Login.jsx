@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
+import { useUser } from '../../Context/UserProvider'
 
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  //const [isLoggedIn, setIsLoggedIn] = useState(true);
-
+  const { setUser } = useUser();
   const navigate = useNavigate()
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -19,18 +20,21 @@ const Login = () => {
       })
       const { token } = response.data
       localStorage.setItem('token', token)
-      await console.log(response)
-      //setIsLoggedIn(true);
+      //setUser(response.data.user);
+      console.log(response.data)
+      await new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000);
+      })
       navigate('/')
     } catch (err) {
       console.log(err)
+      alert('wrong username or password')
     }
   }
 
   return (
     <>
       {
-        /*isLoggedIn &&*/
         <div
           id="page-container"
           className="bg-image flex h-screen items-center justify-center bg-transparent"
