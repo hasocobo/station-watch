@@ -32,8 +32,8 @@ export default function Hero() {
         />
         <HeroNavigation
           style={'hover:bg-emerald-100 border-emerald-100 delay-xl'}
-          text={'Bildirimler'}
-          link={'/bildirimler'}
+          text={'Bekleyen Tesler'}
+          link={'/bekleyentestler'}
         />
         <div className="letter-animation delay-xxl flex w-full justify-center pt-4">
           <SearchBar />

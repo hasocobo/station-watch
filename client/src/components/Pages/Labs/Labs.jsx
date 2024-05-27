@@ -87,7 +87,7 @@ const stations = [
 
 export default function Labs() {
   return (
-    <div className="mx-auto max-w-[80vw] bg-white p-6">
+    <div className="mx-auto max-w-[80vw] bg-white p-6 overflow-y-auto">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex w-full items-center justify-between">
           <div className="flex gap-6">

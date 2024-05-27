@@ -34,7 +34,7 @@ export default function Avatar({ user }) {
             <div className="flex items-center gap-2 px-4 py-4">
               <UserIcon user={user} />
               <div className="flex flex-col">
-                <p className="font-semibold text-slate-700">{user.name}</p>
+                <p className="font-semibold text-slate-700">{user.name + " " + user.surname}</p>
                 <p className="font-normal text-slate-500">{user.role}</p>
               </div>
             </div>

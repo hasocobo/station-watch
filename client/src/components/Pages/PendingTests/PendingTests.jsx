@@ -18,7 +18,7 @@ const exampleData = [
   {
     id: 32655,
     projectName: 'Test',
-    createdBy: 'Hasan',
+    createdBy: 'Ayşe',
     creationDate: '26/05/2024',
     labAssignment: labs,
     stationAssignment: stations,
@@ -35,8 +35,8 @@ const exampleData = [
   },
   {
     id: 3262255,
-    projectName: 'Aquila',
-    createdBy: 'Cüneyt',
+    projectName: 'Hız testi',
+    createdBy: 'Mehmet',
     creationDate: '25/05/2024',
     labAssignment: labs,
     stationAssignment: stations,
@@ -63,7 +63,7 @@ const exampleData = [
   {
     id: 3262855,
     projectName: 'Lorem ipsum ',
-    createdBy: 'Berat',
+    createdBy: 'Hasan',
     creationDate: '28/05/2024',
     labAssignment: labs,
     stationAssignment: stations,

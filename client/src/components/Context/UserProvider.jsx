@@ -1,7 +1,8 @@
 import { createContext, useContext, useState } from "react"
 
 const exampleUser = {
-  name: "Hasan Çoban",
+  name: "Hasan",
+  surname: "Çoban",
   role: "Tester"
 }
 

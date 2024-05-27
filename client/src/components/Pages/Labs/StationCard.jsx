@@ -14,7 +14,7 @@ export default function StationCard({
       <div className="px-6 pb-6 pt-3 flex grow flex-col">
         {cycles && (
           <div className="mb-4 flex items-center justify-center gap-1 text-center text-lg font-semibold text-slate-600">
-            <i className="material-symbols-outlined text-slate-500">cycle</i>
+            <i className="material-symbols-outlined text-slate-400">cycle</i>
             <div>
               {cycles}.{' '}
               <span className="text-base font-normal text-slate-500">

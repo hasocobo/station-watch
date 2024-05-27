@@ -18,7 +18,7 @@ import RestrictedView from './components/Pages/LoginSignup/RestrictedView.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: localStorage.getItem('token') ? <App /> : <Navigate to={"/login"} /> ,
+    element: <App />,
     children: [
       {
         path: '',

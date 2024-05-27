@@ -20,10 +20,11 @@ const Login = () => {
       })
       const { token } = response.data
       localStorage.setItem('token', token)
-      //setUser(response.data.user);
+      console.log(localStorage.getItem('token'));
+      setUser(response.data.user);
       console.log(response.data)
       await new Promise((resolve, reject) => {
-        setTimeout(resolve, 1000);
+        setTimeout(resolve, 2000);
       })
       navigate('/')
     } catch (err) {
