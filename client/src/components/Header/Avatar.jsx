@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 export default function Avatar({ user }) {
   const [expanded, setExpanded] = useState(false)
   const popoverRef = useRef(null)
+  const role = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+
 
   useEffect(() => {
     expanded
@@ -35,7 +37,7 @@ export default function Avatar({ user }) {
               <UserIcon user={user} />
               <div className="flex flex-col">
                 <p className="font-semibold text-slate-700">{user.name + " " + user.surname}</p>
-                <p className="font-normal text-slate-500">{user.role}</p>
+                <p className="font-normal text-slate-500">{role}</p>
               </div>
             </div>
           </header>
