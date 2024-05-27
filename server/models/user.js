@@ -3,7 +3,6 @@ const crypto = require('crypto');
 
 const {isEmail } = require('validator');
 
-
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -11,6 +10,18 @@ const userSchema = new mongoose.Schema({
         unique: true,
         validate: [isEmail, 'Please enter a valid email.']
     },
+    name: {
+        type: String,
+        required: true,
+
+    }    ,  
+    surname: {
+        type: String,
+        required: true,
+
+    }   
+
+    ,
     password: {
         type: String,
         required: true,

@@ -2,14 +2,15 @@ const User = require('../models/user');
 
 const jwt = require('jsonwebtoken');
 
-const secretKey = 'hci2024'; // Güvenli bir şekilde saklayın
-
+const secretKey = 'hci2024'; 
 
 exports.signup = async (req, res) => {
     try {
-        const { username, password, role } = req.body;
+        const { username, name,surname,password, role } = req.body;
         const user = new User({
         username,
+        name,  
+        surname,  
         password,
         role,
         });
@@ -27,7 +28,7 @@ exports.login = async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
-        // use comparePassword method from user model
+   
         if (!user.comparePassword(password)) {
             return res.status(400).json({ message: "Incorrect password" });
         }
@@ -43,8 +44,7 @@ exports.login = async (req, res) => {
 
 }
 
-// Path: server/models/lab.js
-// Compare this snippet from server/models/station.js:
+
 exports.getUser = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
