@@ -24,7 +24,7 @@ const Login = () => {
       setUser(response.data.user);
       console.log(response.data)
       await new Promise((resolve, reject) => {
-        setTimeout(resolve, 2000);
+        setTimeout(resolve, 500);
       })
       navigate('/')
     } catch (err) {

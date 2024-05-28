@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
-import { createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import App from './App'
 import Hero from './components/Pages/Hero/Hero.jsx'
 import './index.css'
@@ -13,7 +13,8 @@ import Notifications from './components/Pages/Notifications/Notifications.jsx'
 import AddNew from './components/Pages/AddNew/AddNew.jsx'
 import UserProvider from './components/Context/UserProvider.jsx'
 import RestrictedView from './components/Pages/LoginSignup/RestrictedView.jsx'
-
+import Stations from './components/Pages/Labs/Stations.jsx'
+import LabProvider from './components/Context/LabProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,17 @@ const router = createBrowserRouter([
       },
       {
         path: '/laboratuvarlar',
-        element: <Labs />
+        element: (
+          <LabProvider>
+            <Labs />
+          </LabProvider>
+        ),
+        children: [
+          {
+            path: ':labId',
+            element: <Stations />
+          }
+        ]
       },
       {
         path: '/testgecmisi',
