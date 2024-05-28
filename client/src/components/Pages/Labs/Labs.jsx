@@ -1,6 +1,9 @@
+import LabCard from './LabCard'
+
 const labs = [
   {
     name: 'Ömür Labı',
+    id: 'omur',
     stations: [
       {
         id: 1,
@@ -86,6 +89,7 @@ const labs = [
   }
 ]
 
+
 export default function Labs() {
   return (
     <div className="mx-auto max-w-[80vw] overflow-y-auto bg-white p-6">
@@ -93,10 +97,12 @@ export default function Labs() {
         <div className="flex w-full items-center justify-between">
           <div className="flex gap-6">
             <div className="text-lg text-slate-500">
-              <span className="font-bold text-slate-800">3</span> dolu laboratuvar
+              <span className="font-bold text-slate-800">3</span> dolu
+              laboratuvar
             </div>
             <div className="text-lg text-slate-500">
-              <span className="font-bold text-slate-800">2</span> boş laboratuvar
+              <span className="font-bold text-slate-800">2</span> boş
+              laboratuvar
             </div>
           </div>
           <div className="flex items-center rounded-lg border border-slate-300 bg-white p-1 shadow-sm hover:border-sky-300">
@@ -110,6 +116,9 @@ export default function Labs() {
             </button>
           </div>
         </div>
+      </div>
+      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {labs.map((lab) => <LabCard key={lab.id} name={lab.name} link={lab.id} stationAmount={lab.stations.length} />)}
       </div>
     </div>
   )

@@ -39,13 +39,15 @@ const router = createBrowserRouter([
           <LabProvider>
             <Labs />
           </LabProvider>
-        ),
-        children: [
-          {
-            path: ':labId',
-            element: <Stations />
-          }
-        ]
+        )
+      },
+      {
+        path: '/laboratuvarlar/:labId',
+        element: (
+          <LabProvider>
+            <Stations />
+          </LabProvider>
+        )
       },
       {
         path: '/testgecmisi',
