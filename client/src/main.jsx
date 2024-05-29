@@ -35,19 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/laboratuvarlar',
-        element: (
-          <LabProvider>
-            <Labs />
-          </LabProvider>
-        )
+        element: <Labs />
       },
       {
         path: '/laboratuvarlar/:labId',
-        element: (
-          <LabProvider>
-            <Stations />
-          </LabProvider>
-        )
+        element: <Stations />
       },
       {
         path: '/testgecmisi',
@@ -72,7 +64,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <UserProvider>
-      <RouterProvider router={router} />
+      <LabProvider>
+        <RouterProvider router={router} />
+      </LabProvider>
     </UserProvider>
   </React.StrictMode>
 )

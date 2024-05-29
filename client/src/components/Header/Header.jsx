@@ -6,7 +6,7 @@ import { useUser } from '../Context/UserProvider'
 
 export default function Header() {
   const { user } = useUser()
-  let pageName = useLocation().pathname
+  let pageName = useLocation().pathname.slice(1).split("/")[0];
 
   return (
     <div className="sticky w-full border-b bg-white text-sm font-semibold">
@@ -19,29 +19,28 @@ export default function Header() {
             <div className="flex w-full items-center justify-center">
               <div className="flex gap-4">
                 <NavItem
+                  icon={"add_circle"}
                   name={'Test Oluştur'}
                   link={'/testolustur'}
-                  style={pageName === '/testolustur' ? 'selected' : ''}
+                  style={pageName === 'testolustur' ? 'selected' : ''}
                 />
                 <NavItem
+                  icon={"timer"}
                   name={'Bekleyen Testler'}
                   link={'/bekleyentestler'}
-                  style={pageName === '/bekleyentestler' ? 'selected' : ''}
+                  style={pageName === 'bekleyentestler' ? 'selected' : ''}
                 />
                 <NavItem
+                  icon={"history"}
                   name={'Test Geçmişi'}
                   link={'/testgecmisi'}
-                  style={pageName === '/testgecmisi' ? 'selected' : ''}
+                  style={pageName === 'testgecmisi' ? 'selected' : ''}
                 />
                 <NavItem
+                  icon={"labs"}
                   name={'Laboratuvarlar'}
                   link={'/laboratuvarlar'}
-                  style={pageName === '/laboratuvarlar' ? 'selected' : ''}
-                />
-                <NavItem
-                  name={'Ekle'}
-                  link={'/ekle'}
-                  style={pageName === '/ekle' ? 'selected' : ''}
+                  style={pageName === 'laboratuvarlar' ? 'selected' : ''}
                 />
               </div>
             </div>

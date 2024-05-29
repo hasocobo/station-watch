@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const NavItem = function ({ link, name, onClick, style }) {
+const NavItem = function ({ link, name, onClick, style, icon }) {
   return (
     <Link
       to={link}
@@ -9,7 +9,10 @@ const NavItem = function ({ link, name, onClick, style }) {
      duration-200 hover:cursor-pointer hover:bg-slate-200 active:bg-slate-300 ${style}`}
       onClick={onClick}
     >
-      {name}
+      <div className='flex items-center justify-center text-slate-700 gap-1'>
+        <i className='material-symbols-outlined text-slate-500'>{icon}</i>
+       {name}
+      </div>
     </Link>
   )
 }
