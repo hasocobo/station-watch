@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import {
+  Button,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  Transition,
+  TransitionChild
+} from '@headlessui/react'
 import axios from 'axios'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
@@ -7,9 +15,18 @@ import { useUser } from '../../Context/UserProvider'
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const { setUser } = useUser();
+  const { setUser } = useUser()
   const navigate = useNavigate()
 
+  let [isOpen, setIsOpen] = useState(true)
+
+  function open() {
+    setIsOpen(true)
+  }
+
+  function close() {
+    setIsOpen(false)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -20,25 +37,65 @@ const Login = () => {
       })
       const { token } = response.data
       localStorage.setItem('token', token)
-      console.log(localStorage.getItem('token'));
-      setUser(response.data.user);
+      console.log(localStorage.getItem('token'))
+      setUser(response.data.user)
       console.log(response.data)
       await new Promise((resolve, reject) => {
-        setTimeout(resolve, 500);
+        setTimeout(resolve, 500)
       })
       navigate('/')
     } catch (err) {
       console.log(err)
-      alert('wrong username or password')
+      setIsOpen(true)
     }
   }
 
   return (
     <>
+      <Transition appear show={isOpen}>
+        <Dialog
+          as="div"
+          className="relative z-10 focus:outline-none"
+          onClose={close}
+        >
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4">
+              <TransitionChild
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 transform-[scale(95%)]"
+                enterTo="opacity-100 transform-[scale(100%)]"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 transform-[scale(100%)]"
+                leaveTo="opacity-0 transform-[scale(95%)]"
+              >
+                <DialogPanel className="w-96 max-w-md rounded-xl bg-white/5 p-6 border backdrop-blur-2xl">
+                  <DialogTitle
+                    as="h3"
+                    className="text-lg font-semibold text-slate-800"
+                  >
+                    Wrong username or password!
+                  </DialogTitle>
+                  <p className="mt-2 text-sm/6 text-slate-800/50">
+                    Please enter your username and password again.
+                  </p>
+                  <div className="mt-4">
+                    <Button
+                      className="inline-flex items-center gap-2 rounded-md bg-blue-400 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+                      onClick={close}
+                    >
+                      Try Again
+                    </Button>
+                  </div>
+                </DialogPanel>
+              </TransitionChild>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
       {
         <div
           id="page-container"
-          className="bg-image flex h-screen items-center justify-center bg-transparent"
+          className={"bg-image flex h-screen items-center justify-center bg-transparent " + (isOpen ? "blur-sm " : "") }
         >
           <div id="main" className="rounded-lg">
             <div
