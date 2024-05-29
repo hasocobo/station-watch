@@ -13,7 +13,7 @@ export default function Header() {
       <div className="mx-auto max-w-7xl">
         <div className="px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link to={'/'} className="hover:cursor-pointer">
+            <Link to={'/'} className="hover:cursor-pointer hidden md:block">
               <img src={Logo} alt="station watch logo" className="w-32" />
             </Link>
             <div className="flex w-full items-center justify-center">

@@ -122,15 +122,15 @@ export default function CreateTest() {
                 ></div>
               </div>
             </div>
-            <div className="flex grow">
-              <div className="flex w-[55%] flex-col gap-10">
+            <div className="flex grow md:flex-row flex-col">
+              <div className="flex w-[50%] flex-col gap-5">
                 <Select
                   title={'Makine'}
                   options={machines}
                   name={'makine'}
                   value={selectedOptions.makine}
                   onChange={handleSelectChange}
-                  style={'flex flex-row gap-20 items-center justify-between'}
+                  style={'flex flex-col'}
                   optionStyle={'w-[25rem] max-w-[25rem]'}
                 />
                 <Select
@@ -139,7 +139,7 @@ export default function CreateTest() {
                   name={'testTipi'}
                   value={selectedOptions.testTipi}
                   onChange={handleSelectChange}
-                  style={'flex flex-row gap-20 items-center justify-between'}
+                  style={'flex flex-col'}
                   optionStyle={'w-[25rem] max-w-[25rem]'}
                 />
                 <Select
@@ -148,7 +148,7 @@ export default function CreateTest() {
                   name={'program'}
                   value={selectedOptions.program}
                   onChange={handleSelectChange}
-                  style={'flex flex-row gap-20 items-center justify-between'}
+                  style={'flex flex-col'}
                   optionStyle={'w-[25rem] max-w-[25rem]'}
                 />
                 <Select
@@ -157,8 +157,8 @@ export default function CreateTest() {
                   name={'yukleme'}
                   value={selectedOptions.yukleme}
                   onChange={handleSelectChange}
-                  style={'flex flex-row gap-20 items-center justify-between'}
-                  optionStyle={'w-[25rem] max-w-[25rem]'}
+                  style={'flex flex-col'}
+                  optionStyle={'w-[25rem] max-w-[25rem] min-w-[25rem]'}
                 />
                 <Select
                   title={'Sıcaklık'}
@@ -166,7 +166,7 @@ export default function CreateTest() {
                   name={'sicaklik'}
                   value={selectedOptions.sicaklik}
                   onChange={handleSelectChange}
-                  style={'flex flex-row gap-20 items-center justify-between'}
+                  style={'flex flex-col'}
                   optionStyle={'w-[25rem] max-w-[25rem]'}
                 />
                 <Select
@@ -175,11 +175,11 @@ export default function CreateTest() {
                   name={'devir'}
                   value={selectedOptions.devir}
                   onChange={handleSelectChange}
-                  style={'flex flex-row gap-20 items-center justify-between'}
+                  style={'flex flex-col'}
                   optionStyle={'w-[25rem] max-w-[25rem]'}
                 />
               </div>
-              <div className="flex w-[45%] items-start justify-end">
+              <div className="flex w-[50%] items-start justify-end">
                 <div className="flex flex-col">
                   <h1 className="mb-2 self-center text-xl font-semibold">
                     Detay Ekle
@@ -322,7 +322,7 @@ export default function CreateTest() {
   }
 
   return (
-    <div className="mx-auto h-full max-w-[70vw]">
+    <div className="mx-auto h-full max-w-[60vw]">
       <div className="relative h-full py-20">{renderSwitch()}</div>
     </div>
   )
