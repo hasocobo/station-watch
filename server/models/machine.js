@@ -28,6 +28,20 @@ const machineSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
+  photo: {
+    type: String,
+    default: null,
+  },
 });
+
+
+machineSchema.virtual('photoUrl').get(function() {
+  if (this.photo) {
+    return `data:image/png;base64,${this.photo}`;
+  }
+  return null;
+});
+
+
 
 module.exports = mongoose.model("Machine", machineSchema);
