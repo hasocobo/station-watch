@@ -1,15 +1,27 @@
 const Machine = require("../models/machine");
 const Station = require("../models/station");
+const multer = require("multer");
+const upload = require("../middlewares/upload");
 
-exports.createMachine = async (req, res) => {
-    try {
-        const machine = new Machine(req.body);
+//const { GridFsStorage } = require("multer-gridfs-storage");
+
+
+exports.createMachine =[
+    upload.single("photo"),
+    async (req, res) => {
+      try {
+        const machineData = req.body;
+        if (req.file) {
+          machineData.photo = req.file.buffer.toString("base64"); // Fotoğrafı base64 formatına çevir
+        }
+        const machine = new Machine(machineData);
         await machine.save();
         res.status(201).json({ success: true, machine });
-    } catch (error) {
+      } catch (error) {
         res.status(400).json({ message: error.message });
+      }
     }
-}
+  ];
 
 exports.getMachines = async (req, res) => {
     try {
@@ -91,3 +103,6 @@ exports.updateMachine = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 }
+
+
+

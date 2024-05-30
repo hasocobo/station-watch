@@ -7,6 +7,7 @@ const labSchema = new mongoose.Schema({
         unique: true,
         minlength: 3
     },
+    
     stations: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Station'

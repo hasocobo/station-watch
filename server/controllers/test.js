@@ -51,6 +51,11 @@ exports.updateTest = async (req, res) => {
     try {
         const token = req.headers.authorization.split(' ')[1];;
         req.body.lastModifiedBy = await User.findById(req.userId);
+        req.body.machine = await Machine.findById(req.machineId);
+        
+
+
+
         const test = await Test.findById(req.params.id);
         if (!test) {
             return res.status(404).json({message: "Test not found"});
