@@ -44,4 +44,5 @@ machineSchema.virtual('photoUrl').get(function() {
 
 
 
+
 module.exports = mongoose.model("Machine", machineSchema);

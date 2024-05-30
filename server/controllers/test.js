@@ -8,6 +8,8 @@ exports.createTest = async (req, res) => {
 
         const token = req.headers.authorization.split(' ')[1];;
         req.body.creationBy = await User.findById(req.userId);
+        req.body.machine  = await Machine.findById(req.body.machine);
+        req.body.machine.isAvailable = false;
         
         const test = new Test({
             ...req.body,
@@ -115,7 +117,7 @@ exports.finishTest = async (req, res) => {
             return res.status(400).json({message: "Test is already in finished state"});
         }
 
-
+        test.machine.isAvaible = true;
         test.machine = null;
         test.status = "finished";
         await test.save();

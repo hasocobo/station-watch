@@ -4,12 +4,12 @@ const testController = require("../controllers/test");
 const authController = require("../controllers/user");
 
 
-router.post("/tests",authController.authenticateJWT, authController.extractUserId,testController.createTest);
+router.post("/tests", authController.extractUserId,testController.createTest);
 router.get("/tests",authController.authenticateJWT, testController.getTests);
-router.get("/tests/:id",authController.authenticateJWT, testController.getTest);
+router.get("/tests/:id", testController.getTest);
 router.put("/tests/:id",authController.extractUserId,testController.updateTest);
 
-router.put("/tests/assign",authController.authenticateJWT, authController.extractUserId,testController.updateTest);
+router.put("/tests/assign", authController.extractUserId,testController.updateTest);
 
 router.put("/tests/:id/start", testController.startTest);
 router.put("/tests/:id/finish", testController.finishTest);
