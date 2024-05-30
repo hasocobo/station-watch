@@ -123,7 +123,7 @@ export default function CreateTest() {
               </div>
             </div>
             <div className="flex grow md:flex-row flex-col">
-              <div className="flex w-[50%] flex-col gap-5">
+              <div className="flex w-[50%] flex-col gap-6">
                 <Select
                   title={'Makine'}
                   options={machines}

@@ -15,6 +15,7 @@ import UserProvider from './components/Context/UserProvider.jsx'
 import RestrictedView from './components/Pages/LoginSignup/RestrictedView.jsx'
 import Stations from './components/Pages/Labs/Stations.jsx'
 import LabProvider from './components/Context/LabProvider.jsx'
+import StationView from './components/Pages/Labs/StationView.jsx'
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: '/laboratuvarlar/:labId',
         element: <Stations />
+      },
+      {
+        path: '/laboratuvarlar/:labId/:stationId',
+        element: <StationView />
       },
       {
         path: '/testgecmisi',

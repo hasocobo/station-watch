@@ -1,13 +1,16 @@
+import { Link } from "react-router-dom"
+
 export default function StationCard({
   title,
   cycles,
   status,
   statusColor,
   componentId,
-  textColor
+  textColor,
+  link
 }) {
   return (
-    <div className="rounded-md border flex flex-col bg-white shadow-md transition-shadow duration-200 hover:shadow-xl">
+    <Link to={link.toString()} className="rounded-md border flex flex-col bg-white shadow-md transition-shadow duration-200 hover:shadow-xl">
       <div className=" bg-zinc-50 px-6 py-5 text-center text-xl font-semibold text-slate-700">
         {title}
       </div>
@@ -34,6 +37,6 @@ export default function StationCard({
           {status}
         </div>{' '}
       </div>
-    </div>
+    </Link>
   )
 }

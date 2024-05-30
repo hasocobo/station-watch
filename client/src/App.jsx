@@ -9,7 +9,7 @@ const App = () => {
         <header className=" top-0 w-full">
           <Header />
         </header>
-        <main className="grow text-neutral-100">
+        <main className="grow text-neutral-100 overflow-y-auto">
           <Outlet />
         </main>
       </div>

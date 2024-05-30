@@ -1,12 +1,13 @@
 import React from 'react'
 import StationCard from './StationCard'
-import { useParams } from 'react-router-dom'
 import { useLabs } from '../../Context/LabProvider';
+import { useParams } from 'react-router-dom';
 
 export default function Stations() {
   const { labs } = useLabs();
   const { labId } = useParams();
   const lab = labs.find(lab => lab.id === labId);
+
   return (
     <div className="mx-auto max-w-[80vw] bg-white p-6 overflow-y-auto">
       <div className="mb-6 flex items-center justify-between">
@@ -35,6 +36,7 @@ export default function Stations() {
         {lab.stations.map((station) => (
           <StationCard
             key={station.id}
+            link={station.id}
             title={station.title}
             cycles={station.cycles}
             status={station.status}
