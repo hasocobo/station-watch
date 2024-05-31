@@ -104,7 +104,7 @@ export default function PendingTests({ pendingTests = exampleData }) {
             <th>Created By</th>
             <th>Creation Date</th>
             <th>Lab Assignment</th>
-            <th>Machine Assignment</th>
+            <th>Station Assignment</th>
             <th></th>
           </tr>
         </thead>

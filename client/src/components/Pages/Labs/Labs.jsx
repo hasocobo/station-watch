@@ -26,7 +26,7 @@ export default function Labs() {
         </div>
       </div>
       <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-        {labs.map((lab) => <LabCard key={lab.id} name={lab.name} link={lab.id} stationAmount={lab.stations.length} />)}
+        {labs.map((lab) => <LabCard key={lab._id} name={lab.name} link={lab._id} stationAmount={lab.stations.length} />)}
       </div>
     </div>
   )
