@@ -37,9 +37,7 @@ const Login = () => {
       })
       const { token } = response.data
       localStorage.setItem('token', token)
-      console.log(localStorage.getItem('token'))
       setUser(response.data.user)
-      console.log(response.data)
       await new Promise((resolve, reject) => {
         setTimeout(resolve, 500)
       })

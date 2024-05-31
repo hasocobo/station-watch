@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from 'react'
-
+import axios from 'axios'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const exampleLabs = [
   {
@@ -233,16 +233,28 @@ const exampleLabs = [
         status: 'AKTİF',
         statusColor: 'bg-green-100',
         textColor: 'text-green-800'
-      },
+      }
     ]
   }
 ]
 
-
 const LabContext = createContext(null)
 
 export default function LabProvider({ children }) {
-  const [labs, setLabs] = useState(exampleLabs);
+  const [labs, setLabs] = useState(exampleLabs)
+
+  useEffect(() => {
+    const controller = new AbortController()
+    const fetchLabs = (async () => {
+      const response = await axios.get('http://localhost:8000/api/labs', {
+        signal: controller.signal
+      }).catch(e => () => console.log(e))
+      const data = response.data
+      setLabs(data);
+    })()
+
+    return () => controller.abort()
+  }, [])
 
   return (
     <LabContext.Provider value={{ labs, setLabs }}>
