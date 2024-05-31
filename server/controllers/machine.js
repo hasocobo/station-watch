@@ -2,6 +2,7 @@ const Machine = require("../models/machine");
 const Station = require("../models/station");
 const multer = require("multer");
 const upload = require("../middlewares/upload");
+const sendEmail = require("../utils/email"); // E-posta gönderme işlevini içeri aktarın
 
 //const { GridFsStorage } = require("multer-gridfs-storage");
 
@@ -16,6 +17,14 @@ exports.createMachine =[
         }
         const machine = new Machine(machineData);
         await machine.save();
+
+
+                
+        const email = "elif.ozyurek02@gmail.com"; // E-posta alıcısının adresi
+        const subject = "New Machine Created";
+        const text = `A new machine with model ${machine.model} has been created.`;
+        await sendEmail(email, subject, text);
+        
         res.status(201).json({ success: true, machine });
       } catch (error) {
         res.status(400).json({ message: error.message });
