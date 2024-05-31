@@ -194,12 +194,13 @@ exports.finishTest = async (req, res) => {
 
     if (pendingTests.length > 0) {
         // Send email to the creator of the pending test
-        
-        await sendEmail(
+        for (const pendingTest of pendingTests) {
+          await sendEmail(
             pendingTest.creationBy.username,
-            'A Station is Now Available',
+            "A Station is Now Available",
             `Hello ${pendingTest.creationBy.name},\n\nA station in ${lab.name} lab is now available. Your pending test can now be started.`
-        );
+          );
+        }
         
     }
     
