@@ -13,7 +13,7 @@ export default function Labs() {
               laboratuvar mevcut
             </div>
           </div>
-          <div className="flex items-center rounded-lg border border-slate-300 bg-white p-1 shadow-sm hover:border-sky-300">
+          <div className="flex items-center mt-2 rounded-lg border border-slate-300 bg-white p-1 shadow-sm hover:border-sky-300">
             <input
               type="text"
               placeholder="Ara"
@@ -25,7 +25,7 @@ export default function Labs() {
           </div>
         </div>
       </div>
-      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 ">
         {labs.map((lab) => <LabCard key={lab._id} name={lab.name} link={lab._id} stationAmount={lab.stations.length} />)}
       </div>
     </div>

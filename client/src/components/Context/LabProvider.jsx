@@ -1,5 +1,7 @@
-import axios from 'axios'
-import { createContext, useContext, useEffect, useState } from 'react'
+import axios from 'axios';
+import { createContext, useContext, useEffect, useState } from 'react';
+
+const LabContext = createContext(null);
 
 const exampleLabs = [
   {
@@ -238,29 +240,50 @@ const exampleLabs = [
   }
 ]
 
-const LabContext = createContext(null)
-
 export default function LabProvider({ children }) {
-  const [labs, setLabs] = useState(exampleLabs)
+  const [labs, setLabs] = useState(exampleLabs);
 
   useEffect(() => {
-    const controller = new AbortController()
-    const fetchLabs = (async () => {
-      const response = await axios.get('http://localhost:8000/api/labs', {
-        signal: controller.signal
-      }).catch(e => () => console.log(e))
-      const data = response.data
-      setLabs(data);
-    })()
+    const controller = new AbortController();
+    
+    const fetchLabs = async () => {
+      try {
+        // Fetch labs
+        const labsResponse = await axios.get('http://localhost:8000/api/labs', {
+          signal: controller.signal
+        });
 
-    return () => controller.abort()
-  }, [])
+        const labsData = labsResponse.data;
+
+        // Fetch full station details for each lab
+        const labsWithStations = await Promise.all(
+          labsData.map(async (lab) => {
+            const stations = await Promise.all(
+              lab.stations.map(async (stationId) => {
+                const stationResponse = await axios.get(`http://localhost:8000/api/stations/${stationId}`);
+                return stationResponse.data;
+              })
+            );
+            return { ...lab, stations };
+          })
+        );
+        console.log(labsWithStations);
+        setLabs(labsWithStations);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchLabs();
+
+    return () => controller.abort();
+  }, []);
 
   return (
     <LabContext.Provider value={{ labs, setLabs }}>
       {children}
     </LabContext.Provider>
-  )
+  );
 }
 
-export const useLabs = () => useContext(LabContext)
+export const useLabs = () => useContext(LabContext);

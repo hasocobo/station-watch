@@ -1,33 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import StationCard from './StationCard';
 import { useLabs } from '../../Context/LabProvider';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Stations() {
-  const [stations, setStations] = useState();
-
   const { labs } = useLabs();
   const { labId } = useParams();
   const lab = labs.find((lab) => lab._id === labId);
-
-  useEffect(() => {
-    const fetchStations = async () => {
-      const responses = await Promise.all(
-        lab.stations.map((stationId) =>
-          axios.get(`localhost:8000/api/stations/${stationId}`)
-        )
-      ).catch((e) => () => console.log(e));
-      console.log(responses);
-    };
-    fetchStations();
-  }, []);
+  {
+    /*
+      useEffect(() => {
+        const fetchStations = async () => {
+          try {
+            const responses = await Promise.all(
+              lab.stations.map((stationId) =>
+                axios.get(`http://localhost:8000/api/stations/${stationId}`)
+              )
+            );
+            const data = responses.map(response => response.data);
+            setStations(data);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchStations();
+      }, [labs.stations]);*/
+  }
 
   return (
-    <div className="mx-auto max-w-[80vw] overflow-y-auto bg-white p-6">
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex w-full items-center justify-between">
-          <div className="flex gap-6">
+    <div className='overflow-x-hidden relative'>
+      <div className="top absolute mx-20 w-full pl-24 pt-8 text-base ">
+        <p className="text-xl font-bold text-sky-900 bg-slate-50 w-fit rounded-lg p-2">
+          <Link
+            to={`/laboratuvarlar/${lab._id}`}
+            className="text-slate-600 hover:text-slate-700"
+          >
+            {lab.name}
+          </Link>
+        </p>
+        <div className="flex items-baseline gap-3 mt-2">
+          <div className="flex gap-4">
             <div className="text-lg text-slate-500">
               <span className="font-bold text-slate-800">8</span> dolu istasyon
             </div>
@@ -35,31 +48,37 @@ export default function Stations() {
               <span className="font-bold text-slate-800">2</span> boş istasyon
             </div>
           </div>
-          <div className="flex items-center rounded-lg border border-slate-300 bg-white p-1 shadow-sm hover:border-sky-300">
-            <input
-              type="text"
-              placeholder="Ara"
-              className="pl-2 text-base outline-none"
-            />
-            <button className="material-icons ml-2 rounded-full px-2 py-2 text-slate-500">
-              search
-            </button>
-          </div>
         </div>
       </div>
-      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-        {/*lab.stations.map((station) => (
-          <StationCard
-            key={station._id}
-            link={station._id}
-            title={station.title}
-            cycles={station.cycles}
-            status={station.status}
-            statusColor={station.statusColor}
-            componentId={station.componentId}
-            textColor={station.textColor}
-          />
-        ))*/}
+      <div className="mx-auto max-w-[80vw] overflow-y-auto bg-white p-6 mt-8">
+        <div className="mb-6 flex items-center justify-between">
+          <div className="flex w-full items-center justify-between">
+            <div></div>
+            <div className="flex items-center rounded-lg border border-slate-300 bg-white p-1 shadow-sm hover:border-sky-300">
+              <input
+                type="text"
+                placeholder="Ara"
+                className="pl-2 text-base outline-none"
+              />
+              <button className="material-icons ml-2 rounded-full px-2 py-2 text-slate-500">
+                search
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {lab.stations.map((station) => (
+            <StationCard
+              key={station._id}
+              link={station._id}
+              title={station.name}
+              cycles={'55'}
+              status={'AKTİF'}
+              statusColor={'bg-green-100'}
+              textColor={'text-green-800'}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
