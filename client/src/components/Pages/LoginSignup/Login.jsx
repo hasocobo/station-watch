@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Dialog,
@@ -6,47 +6,50 @@ import {
   DialogTitle,
   Transition,
   TransitionChild
-} from '@headlessui/react'
-import axios from 'axios'
-import './Login.css'
-import { useNavigate } from 'react-router-dom'
-import { useUser } from '../../Context/UserProvider'
+} from '@headlessui/react';
+import axios from 'axios';
+import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../Context/UserProvider';
 
 const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const { setUser } = useUser()
-  const navigate = useNavigate()
+  const [isLogin, setIsLogin] = useState(true);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const { setUser } = useUser();
+  const navigate = useNavigate();
 
-  let [isOpen, setIsOpen] = useState(false)
+  let [isOpen, setIsOpen] = useState(false);
 
   function open() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
   function close() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8000/api/login', {
         username,
         password
-      })
-      const { token } = response.data
-      localStorage.setItem('token', token)
-      setUser(response.data.user)
+      });
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      setUser(response.data.user);
       await new Promise((resolve, reject) => {
-        setTimeout(resolve, 500)
-      })
-      navigate('/')
+        setTimeout(resolve, 500);
+      });
+      navigate('/');
     } catch (err) {
-      console.log(err)
-      setIsOpen(true)
+      console.log(err);
+      setIsOpen(true);
+    } finally {
+      setIsOpen(true);
     }
-  }
+  };
 
   return (
     <>
@@ -66,7 +69,7 @@ const Login = () => {
                 leaveFrom="opacity-100 transform-[scale(100%)]"
                 leaveTo="opacity-0 transform-[scale(95%)]"
               >
-                <DialogPanel className="w-96 max-w-md rounded-xl bg-white/5 p-6 border backdrop-blur-2xl">
+                <DialogPanel className="w-96 max-w-md rounded-xl border bg-white/5 p-6 backdrop-blur-2xl">
                   <DialogTitle
                     as="h3"
                     className="text-lg font-semibold text-slate-800"
@@ -93,7 +96,10 @@ const Login = () => {
       {
         <div
           id="page-container"
-          className={"bg-image flex h-screen items-center justify-center bg-transparent " + (isOpen ? "blur-sm " : "") }
+          className={
+            'bg-image flex h-screen items-center justify-center bg-transparent ' +
+            (isOpen ? 'blur-sm ' : '')
+          }
         >
           <div id="main" className="rounded-lg">
             <div
@@ -111,58 +117,164 @@ const Login = () => {
                       {"StationWatch'a hoşgeldin!"}
                     </h2>
                   </div>
-                  <form
-                    onSubmit={handleSubmit}
-                    className="rounded-b-lg bg-white px-16 pb-10 pt-8"
-                  >
-                    <fieldset>
-                      <div>
+                  {isLogin ? (
+                    <form
+                      onSubmit={handleLoginSubmit}
+                      className="rounded-b-lg bg-white px-16 pb-8 pt-8"
+                    >
+                      <fieldset>
                         <div>
-                          <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            minLength="3"
-                            maxLength="20"
-                            placeholder=" "
-                            required
-                          />
-                          <label htmlFor="username">Kullanıcı Adı</label>
+                          <div>
+                            <input
+                              type="text"
+                              id="username"
+                              name="username"
+                              value={username}
+                              onChange={(e) => setUsername(e.target.value)}
+                              minLength="3"
+                              maxLength="20"
+                              placeholder=" "
+                              required
+                            />
+                            <label htmlFor="username">Kullanıcı Adı</label>
+                          </div>
+                          <div>
+                            <input
+                              type="password"
+                              id="password"
+                              name="password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                              minLength="6"
+                              maxLength="20"
+                              placeholder=" "
+                              required
+                            />
+                            <label htmlFor="password">Şifre</label>
+                          </div>
                         </div>
-                        <div>
-                          <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            minLength="6"
-                            maxLength="20"
-                            placeholder=" "
-                            required
-                          />
-                          <label htmlFor="password">Şifre</label>
-                        </div>
-                      </div>
 
-                      <div className="button">
-                        <button
-                          type="submit"
-                          className="mb-2 rounded-md bg-blue-400 hover:bg-blue-500"
-                        >
-                          Giriş Yap
-                        </button>
-                      </div>
-                      <div>
-                        Şifreni mi unuttun?{' '}
-                        <a href="#" className="font-semibold text-blue-300">
-                          Şifreni Yenile
-                        </a>
-                      </div>
-                    </fieldset>
-                  </form>
+                        <div className="button">
+                          <button
+                            type="submit"
+                            className="mb-2 rounded-md bg-blue-400 hover:bg-blue-500"
+                          >
+                            Giriş Yap
+                          </button>
+                        </div>
+                        <div>
+                          Şifreni mi unuttun?{' '}
+                          <a href="#" className="font-semibold text-blue-300">
+                            Şifreni Yenile
+                          </a>
+                          <div className='w-full flex justify-center'>
+                            <div
+                              onClick={() => setIsLogin(false)}
+                              className="mt-4 w-fit rounded-md bg-blue-50
+                            p-2 font-semibold text-blue-400 hover:cursor-pointer hover:text-blue-500 "
+                            >
+                              Veya Hemen Kaydol!
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </form>
+                  ) : (
+                    <form className="rounded-b-lg bg-white px-16 pb-8 pt-8">
+                      <fieldset>
+                        <div>
+                          <div>
+                            <input
+                              type="text"
+                              id="username"
+                              name="username"
+                              value={username}
+                              onChange={(e) => setUsername(e.target.value)}
+                              minLength="3"
+                              maxLength="20"
+                              placeholder=" "
+                              required
+                            />
+                            <label htmlFor="username">Kullanıcı Adı</label>
+                          </div>
+                          <div>
+                            <input
+                              type="password"
+                              id="password"
+                              name="password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                              minLength="6"
+                              maxLength="20"
+                              placeholder=" "
+                              required
+                            />
+                            <label htmlFor="password">Ad</label>
+                          </div>
+                          <div>
+                            <input
+                              type="password"
+                              id="password"
+                              name="password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                              minLength="6"
+                              maxLength="20"
+                              placeholder=" "
+                              required
+                            />
+                            <label htmlFor="password">Soyad</label>
+                          </div>
+                          <div>
+                            <input
+                              type="password"
+                              id="password"
+                              name="password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                              minLength="6"
+                              maxLength="20"
+                              placeholder=" "
+                              required
+                            />
+                            <label htmlFor="password">Rol</label>
+                          </div>
+                          <div>
+                            <input
+                              type="password"
+                              id="password"
+                              name="password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                              minLength="6"
+                              maxLength="20"
+                              placeholder=" "
+                              required
+                            />
+                            <label htmlFor="password">Şifre</label>
+                          </div>
+                        </div>
+
+                        <div className="button">
+                          <button
+                            type="submit"
+                            className="mb-2 rounded-md bg-blue-400 hover:bg-blue-500"
+                          >
+                            Giriş Yap
+                          </button>
+                        </div>
+                        <div>
+                          Zaten hesabın var mı?{' '}
+                          <span
+                            onClick={() => setIsLogin(true)}
+                            className="font-semibold text-blue-300 hover:cursor-pointer hover:text-blue-500"
+                          >
+                            Giriş Yap
+                          </span>
+                        </div>
+                      </fieldset>
+                    </form>
+                  )}
                 </div>
               </div>
             </div>
@@ -170,7 +282,7 @@ const Login = () => {
         </div>
       }
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
