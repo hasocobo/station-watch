@@ -4,13 +4,13 @@ const Lab = require("../models/lab");
 
 exports.createStation = async (req, res) => {
   try {
-    const labId = req.params.labid;
+    
     const { name } = req.body;
     const station = new Station({
         name
     });
 
-    const lab = await Lab.findById(labId);
+    const lab = await Lab.findById( req.body.labid);
     
     if (!lab) {
       return res.status(404).json({ message: "Lab not found" });

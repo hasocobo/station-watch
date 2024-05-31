@@ -19,11 +19,17 @@ exports.createMachine =[
         await machine.save();
 
 
-                
-        const email = "elif.ozyurek02@gmail.com"; // E-posta alıcısının adresi
+          /*
+          
+               const email = "elif.ozyurek02@gmail.com"; // E-posta alıcısının adresi
         const subject = "New Machine Created";
         const text = `A new machine with model ${machine.model} has been created.`;
-        await sendEmail(email, subject, text);
+        await sendEmail(email, subject, text);   
+          
+          
+          
+          */      
+
         
         res.status(201).json({ success: true, machine });
       } catch (error) {

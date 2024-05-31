@@ -5,11 +5,11 @@ const authController = require("../controllers/user");
 
 
 router.post("/tests", authController.extractUserId,testController.createTest);
-router.get("/tests",authController.authenticateJWT, testController.getTests);
+router.get("/tests", testController.getTests);
 router.get("/tests/:id", testController.getTest);
 router.put("/tests/:id",authController.extractUserId,testController.updateTest);
 
-router.put("/tests/assign", authController.extractUserId,testController.updateTest);
+router.put("/tests/assign/:id", authController.extractUserId, testController.assign);
 
 router.put("/tests/:id/start", testController.startTest);
 router.put("/tests/:id/finish", testController.finishTest);

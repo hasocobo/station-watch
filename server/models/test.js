@@ -66,6 +66,11 @@ const testSchema = new mongoose.Schema({
   isProject: {
     type: Boolean,
     default: false,
+  },
+  lab: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: null,
+    required: [true, "Lab cannot be empty"]
   }
 
 });
