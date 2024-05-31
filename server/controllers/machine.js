@@ -34,15 +34,21 @@ exports.getMachines = async (req, res) => {
 
 exports.getMachine = async (req, res) => {
     try {
-        const machine = await Machine.findById(req.params.id).populate("station");
-        if (!machine) {
-            return res.status(404).json({ message: "Machine not found" });
-        }
-        res.status(200).json(machine);
+      const machine = await Machine.findById(req.params.id).populate("station");
+      if (!machine) {
+        return res.status(404).json({ message: "Machine not found" });
+      }
+      
+      if (machine.photo) {
+        machine.photo = Buffer.from(machine.photo, 'base64');
+      }
+  
+      res.status(200).json(machine);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
-}
+  }
+  
 
 exports.assignMachineToStation = async (req, res) => {
     try {
