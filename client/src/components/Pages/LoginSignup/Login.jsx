@@ -13,13 +13,14 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../Context/UserProvider';
 
 const Login = () => {
-  const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
   const { setUser } = useUser();
   const navigate = useNavigate();
 
   let [isOpen, setIsOpen] = useState(false);
+
 
   function open() {
     setIsOpen(true);
@@ -69,7 +70,7 @@ const Login = () => {
                 leaveFrom="opacity-100 transform-[scale(100%)]"
                 leaveTo="opacity-0 transform-[scale(95%)]"
               >
-                <DialogPanel className="w-96 max-w-md rounded-xl border bg-white/5 p-6 backdrop-blur-2xl">
+                <DialogPanel className="w-96 max-w-md rounded-xl border bg-white p-6 backdrop-blur-2xl">
                   <DialogTitle
                     as="h3"
                     className="text-lg font-semibold text-slate-800"
@@ -81,7 +82,8 @@ const Login = () => {
                   </p>
                   <div className="mt-4">
                     <Button
-                      className="inline-flex items-center gap-2 rounded-md bg-blue-400 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+                      className="inline-flex items-center gap-2 rounded-md bg-blue-400 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-blue-500 
+                      transition duration-200 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
                       onClick={close}
                     >
                       Try Again
@@ -117,7 +119,6 @@ const Login = () => {
                       {"StationWatch'a hoşgeldin!"}
                     </h2>
                   </div>
-                  {isLogin ? (
                     <form
                       onSubmit={handleLoginSubmit}
                       className="rounded-b-lg bg-white px-16 pb-8 pt-8"
@@ -167,9 +168,9 @@ const Login = () => {
                           <a href="#" className="font-semibold text-blue-300">
                             Şifreni Yenile
                           </a>
-                          <div className='w-full flex justify-center'>
+                          <div className="flex w-full justify-center">
                             <div
-                              onClick={() => setIsLogin(false)}
+                              onClick={() => navigate("/signup")}
                               className="mt-4 w-fit rounded-md bg-blue-50
                             p-2 font-semibold text-blue-400 hover:cursor-pointer hover:text-blue-500 "
                             >
@@ -179,102 +180,6 @@ const Login = () => {
                         </div>
                       </fieldset>
                     </form>
-                  ) : (
-                    <form className="rounded-b-lg bg-white px-16 pb-8 pt-8">
-                      <fieldset>
-                        <div>
-                          <div>
-                            <input
-                              type="text"
-                              id="username"
-                              name="username"
-                              value={username}
-                              onChange={(e) => setUsername(e.target.value)}
-                              minLength="3"
-                              maxLength="20"
-                              placeholder=" "
-                              required
-                            />
-                            <label htmlFor="username">Kullanıcı Adı</label>
-                          </div>
-                          <div>
-                            <input
-                              type="password"
-                              id="password"
-                              name="password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                              minLength="6"
-                              maxLength="20"
-                              placeholder=" "
-                              required
-                            />
-                            <label htmlFor="password">Ad</label>
-                          </div>
-                          <div>
-                            <input
-                              type="password"
-                              id="password"
-                              name="password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                              minLength="6"
-                              maxLength="20"
-                              placeholder=" "
-                              required
-                            />
-                            <label htmlFor="password">Soyad</label>
-                          </div>
-                          <div>
-                            <input
-                              type="password"
-                              id="password"
-                              name="password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                              minLength="6"
-                              maxLength="20"
-                              placeholder=" "
-                              required
-                            />
-                            <label htmlFor="password">Rol</label>
-                          </div>
-                          <div>
-                            <input
-                              type="password"
-                              id="password"
-                              name="password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                              minLength="6"
-                              maxLength="20"
-                              placeholder=" "
-                              required
-                            />
-                            <label htmlFor="password">Şifre</label>
-                          </div>
-                        </div>
-
-                        <div className="button">
-                          <button
-                            type="submit"
-                            className="mb-2 rounded-md bg-blue-400 hover:bg-blue-500"
-                          >
-                            Giriş Yap
-                          </button>
-                        </div>
-                        <div>
-                          Zaten hesabın var mı?{' '}
-                          <span
-                            onClick={() => setIsLogin(true)}
-                            className="font-semibold text-blue-300 hover:cursor-pointer hover:text-blue-500"
-                          >
-                            Giriş Yap
-                          </span>
-                        </div>
-                      </fieldset>
-                    </form>
-                  )}
                 </div>
               </div>
             </div>

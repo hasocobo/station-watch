@@ -16,6 +16,7 @@ import RestrictedView from './components/Pages/LoginSignup/RestrictedView.jsx'
 import Stations from './components/Pages/Labs/Stations.jsx'
 import LabProvider from './components/Context/LabProvider.jsx'
 import StationView from './components/Pages/Labs/StationView.jsx'
+import Signup from './components/Pages/LoginSignup/Signup.jsx';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '/signup',
+    element: <Signup />
   }
 ])
 
