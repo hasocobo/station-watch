@@ -7,20 +7,21 @@ const station = require("../models/station");
 const sendEmail = require("../utils/email"); // E-posta gönderme işlevini içeri aktarın
 const mongoose = require("mongoose");
 
-
 exports.createTest = async (req, res) => {
+
+  if (req.role != "engineer") {
+    return res.status(403).json({ message: "Unauthorized fot this content." });
+  }
+
   try {
     const token = req.headers.authorization.split(" ")[1];
     req.body.creationBy = await User.findById(req.userId);
     const machine = await Machine.findById(req.body.machine);
     const station = await Station.findById(req.body.station);
 
-
     if (machine.isAvailable) {
       //req.body.machine.isAvailable = false;
       const lab = await Lab.findById(req.body.lab);
-
-     
 
       if (req.body.station != null) {
         req.body.status = "active";
@@ -28,14 +29,9 @@ exports.createTest = async (req, res) => {
         station.isAvailable = false;
         await machine.save();
         await station.save();
-
-
-
-      } 
-      
-      else {
+      } else {
         req.body.status = "passive";
-       // await station.save();
+        // await station.save();
         // await lab.save();
       }
 
@@ -47,8 +43,8 @@ exports.createTest = async (req, res) => {
 
       await test.save();
       res.status(201).json({ success: true, test });
-    }else{
-        res.status(400).json({ message: "Machine is not avaible" });
+    } else {
+      res.status(400).json({ message: "Machine is not avaible" });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -84,6 +80,11 @@ exports.getTest = async (req, res) => {
 };
 
 exports.updateTest = async (req, res) => {
+
+  if (req.role != "engineer") {
+    return res.status(403).json({ message: "Unauthorized fot this content." });
+  }
+
   try {
     const token = req.headers.authorization.split(" ")[1];
     req.body.lastModifiedBy = await User.findById(req.userId);
@@ -107,6 +108,10 @@ exports.updateTest = async (req, res) => {
 
 exports.startTest = async (req, res) => {
   try {
+    if (req.role != "technician") {
+      return res.status(403).json({ message: "Unauthorized fot this content." });
+    }
+
     const test = await Test.findById(req.params.id);
     const machine = await Machine.findById(test.machine);
 
@@ -139,6 +144,11 @@ exports.startTest = async (req, res) => {
 };
 
 exports.assign = async (req, res) => {
+
+  if (req.role != "engineer") {
+    return res.status(403).json({ message: "Unauthorized fot this content." });
+  }
+
   console.log("5");
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -168,9 +178,14 @@ exports.assign = async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
 
 exports.finishTest = async (req, res) => {
+
+  if (req.role != "technician") {
+    return res.status(403).json({ message: "Unauthorized fot this content." });
+  }
+
   try {
     const test = await Test.findById(req.params.id);
 
@@ -178,32 +193,33 @@ exports.finishTest = async (req, res) => {
       return res.status(404).json({ message: "Test not found" });
     }
 
-    if ((test.status == "finished")) {
+    if (test.status == "finished") {
       return res
         .status(400)
         .json({ message: "Test is already in finished state" });
     }
-
 
     test.machine = null;
     test.status = "finished";
 
     const lab = await Lab.findById(test.lab);
     // Check for pending tests
-    const pendingTests = await Test.find({ lab: test.lab, status: 'pending' }).populate('creationBy');
+    const pendingTests = await Test.find({
+      lab: test.lab,
+      status: "pending",
+    }).populate("creationBy");
 
     if (pendingTests.length > 0) {
-        // Send email to the creator of the pending test
-        for (const pendingTest of pendingTests) {
-          await sendEmail(
-            pendingTest.creationBy.username,
-            "A Station is Now Available",
-            `Hello ${pendingTest.creationBy.name},\n\nA station in ${lab.name} lab is now available. Your pending test can now be started.`
-          );
-        }
-        
+      // Send email to the creator of the pending test
+      for (const pendingTest of pendingTests) {
+        await sendEmail(
+          pendingTest.creationBy.username,
+          "A Station is Now Available",
+          `Hello ${pendingTest.creationBy.name},\n\nA station in ${lab.name} lab is now available. Your pending test can now be started.`
+        );
+      }
     }
-    
+
     await test.save();
     res.status(200).json({ success: true, test });
   } catch (error) {
@@ -212,42 +228,18 @@ exports.finishTest = async (req, res) => {
 };
 
 exports.stopTest = async (req, res) => {
+
+  if (req.role != "technician") {
+    return res.status(403).json({ message: "Unauthorized fot this content." });
+  }
+
   try {
     const test = await Test.findById(req.params.id);
     if (!test) {
       return res.status(404).json({ message: "Test not found" });
     }
-    test.status = "passive";
+    test.status = "active";
     await test.save();
-    res.status(200).json({ success: true, test });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-exports.assignTestToMachine = async (req, res) => {
-  try {
-    const test = await Test.findById(req.params.id);
-    const machine = await Machine.findById(req.body.machineId);
-    if (!test || !machine) {
-      return res.status(404).json({ message: "Test or machine not found" });
-    }
-
-    console.log(machine.tests.indexOf(test.id));
-
-    test.machine = machine;
-    if (machine.tests.indexOf(test.id) == -1) {
-      machine.tests.push(test);
-    } else {
-      return res
-        .status(400)
-        .json({ message: "Test is already assigned to machine" });
-    }
-
-    console.log("");
-    await test.save();
-    console.log("");
-    await machine.save();
     res.status(200).json({ success: true, test });
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -255,6 +247,11 @@ exports.assignTestToMachine = async (req, res) => {
 };
 
 exports.deleteTest = async (req, res) => {
+
+  if (req.role != "engineer") {
+    return res.status(403).json({ message: "Unauthorized fot this content." });
+  }
+
   try {
     const test = await Test.findByIdAndDelete(req.params.id);
     if (!test) {

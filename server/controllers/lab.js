@@ -1,13 +1,18 @@
 const Lab = require("../models/lab.js");
+const Station = require("../models/station");
 
 exports.createLab = async (req, res) => {
   try {
+
+    if (req.role != "engineer") {
+      return res.status(403).json({ message: "Unauthorized fot this content." });
+    }
+ 
     const name = req.body.name;
     const stations = req.body.stations;
     const lab = new Lab({
-        name,
-        stations
-
+      name,
+      stations,
     });
     await lab.save();
     res.status(201).json({ success: true, lab });
@@ -18,7 +23,6 @@ exports.createLab = async (req, res) => {
 
 exports.getLabs = async (req, res) => {
   try {
-    
     const labs = await Lab.find();
     res.status(200).json(labs);
   } catch (error) {
@@ -39,6 +43,11 @@ exports.getLab = async (req, res) => {
 };
 
 exports.updateLab = async (req, res) => {
+
+  if (req.role != "engineer") {
+    return res.status(403).json({ message: "Unauthorized fot this content." });
+  }
+
   try {
     const lab = await Lab.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -54,8 +63,19 @@ exports.updateLab = async (req, res) => {
 };
 
 exports.deleteLab = async (req, res) => {
+
+  if (req.role != "engineer") {
+    return res.status(403).json({ message: "Unauthorized fot this content." });
+  }
+
   try {
     const lab = await Lab.findByIdAndDelete(req.params.id);
+    console.log(lab.stations);
+    lab.stations.forEach(async (stationId) => {
+      console.log(stationId);
+      await Station.findByIdAndDelete(stationId);
+    });
+
     if (!lab) {
       return res.status(404).json({ message: "Lab not found" });
     }
