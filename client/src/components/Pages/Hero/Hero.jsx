@@ -6,7 +6,7 @@ export default function Hero() {
   const { user } = useUser();
   return (
     <div className="mx-auto max-w-7xl">
-      <h1 className="flex justify-center py-20 text-5xl leading-normal">
+      <h1 className="flex justify-center lg:py-20 md:py-16 sm:py-12 py-10 md:text-4xl lg:text-5xl text-3xl leading-normal">
         <p className="letter-animation text-center">
           <span>Hoşgeldin</span> <span className="text-sky-400">{user.name.split(" ")[0]}, </span>
           <br />

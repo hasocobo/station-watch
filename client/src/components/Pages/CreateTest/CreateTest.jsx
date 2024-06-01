@@ -1,32 +1,36 @@
-import { useState } from 'react'
-import Button from '../../Button/Button'
-import Icon from '../../Icon/Icon'
-import Select from './Select'
-import check from '../../../assets/check.png'
+import { useState } from 'react';
+import Button from '../../Button/Button';
+import Icon from '../../Icon/Icon';
+import Select from './Select';
+import check from '../../../assets/check.png';
 
-const labs = [{ name: 'Lab 1' }, { name: 'Ömür Labı' }, { name: 'Lab 99' }]
+const labs = [{ name: 'Lab 1' }, { name: 'Ömür Labı' }, { name: 'Lab 99' }];
 
 const stations = [
   { name: '35' },
   { name: '31' },
   { name: '33' },
   { name: 'Sıraya Gir' }
-]
-const machines = [{ name: '70499' }, { name: '70558' }, { name: '74015' }]
+];
+const machines = [{ name: '70499' }, { name: '70558' }, { name: '74015' }];
 const aquilaIds = [
   { name: '357162322' },
   { name: '325689723' },
   { name: '777845236' }
-]
+];
 const testTypes = [
   { name: 'Yıpranma' },
   { name: 'Dayanıklılık' },
   { name: 'Hız' }
-]
-const programs = [{ name: 'Eco' }, { name: 'Fast' }, { name: 'Long' }]
-const yukleme = [{ name: '0,75' }, { name: '1' }, { name: '1,5' }]
-const sicaklik = [{ name: '30°C' }, { name: '60°C' }, { name: '50°C' }]
-const maksDevir = [{ name: '1200rpm' }, { name: '1500rpm' }, { name: '600rpm' }]
+];
+const programs = [{ name: 'Eco' }, { name: 'Fast' }, { name: 'Long' }];
+const yukleme = [{ name: '0,75' }, { name: '1' }, { name: '1,5' }];
+const sicaklik = [{ name: '30°C' }, { name: '60°C' }, { name: '50°C' }];
+const maksDevir = [
+  { name: '1200rpm' },
+  { name: '1500rpm' },
+  { name: '600rpm' }
+];
 
 export default function CreateTest() {
   const [selectedOptions, setSelectedOptions] = useState({
@@ -40,14 +44,14 @@ export default function CreateTest() {
     sicaklik: sicaklik[0].name,
     devir: maksDevir[0].name,
     detay: ''
-  })
+  });
 
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(1);
 
   const handleSelectChange = (event) => {
-    const { name, value } = event.target
-    setSelectedOptions({ ...selectedOptions, [name]: value })
-  }
+    const { name, value } = event.target;
+    setSelectedOptions({ ...selectedOptions, [name]: value });
+  };
 
   const renderSwitch = () => {
     switch (step) {
@@ -70,7 +74,7 @@ export default function CreateTest() {
                 onChange={handleSelectChange}
                 options={aquilaIds}
                 style={'flex gap-2 flex-col'}
-                optionStyle={'w-[40rem]'}
+                optionStyle={'lg:w-[40rem] md:w-[30rem] sm:w-[25rem] w-[15rem]'}
               />
               <Select
                 title={'Laboratuvar Seçiniz'}
@@ -79,7 +83,7 @@ export default function CreateTest() {
                 onChange={handleSelectChange}
                 options={labs}
                 style={'flex gap-2 flex-col'}
-                optionStyle={'w-[40rem]'}
+                optionStyle={'lg:w-[40rem] md:w-[30rem] sm:w-[25rem] w-[15rem]'}
               />
               <Select
                 title={'İstasyon Seçiniz'}
@@ -88,14 +92,14 @@ export default function CreateTest() {
                 onChange={handleSelectChange}
                 options={stations}
                 style={'flex gap-2 flex-col'}
-                optionStyle={'w-[40rem]'}
+                optionStyle={'lg:w-[40rem] md:w-[30rem] sm:w-[25rem] w-[15rem]'}
               />
             </div>
-            <div className="flex justify-between">
+            <div className="flex gap-12 justify-between">
               <div className="" onClick={() => setStep(step - 1)}>
                 <Button
                   style={
-                    'w-40 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-sm'
+                    'lg:w-40 sm:w-32 w-28 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-sm'
                   }
                   name={'Geri'}
                 />
@@ -103,14 +107,14 @@ export default function CreateTest() {
               <div className="" onClick={() => setStep(step + 1)}>
                 <Button
                   style={
-                    'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
+                    'lg:w-40 sm:w-32 w-28 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
                   }
                   name={'İleri'}
                 />
               </div>
             </div>
           </div>
-        )
+        );
       case 1:
         return (
           <div className="relative flex h-full flex-col justify-between">
@@ -122,8 +126,8 @@ export default function CreateTest() {
                 ></div>
               </div>
             </div>
-            <div className="flex grow md:flex-row flex-col">
-              <div className="flex w-[50%] flex-col gap-6">
+            <div className="flex grow flex-col lg:flex-row">
+              <div className="flex flex-col items-center gap-6   ">
                 <Select
                   title={'Makine'}
                   options={machines}
@@ -131,7 +135,9 @@ export default function CreateTest() {
                   value={selectedOptions.makine}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
-                  optionStyle={'w-[25rem] max-w-[25rem]'}
+                  optionStyle={
+                    'md:w-[25rem] md:max-w-[25rem] w-[15rem] max-w-[15rem] sm:w-[20rem] sm:max-w-[20rem] '
+                  }
                 />
                 <Select
                   title={'Test Tipi'}
@@ -140,7 +146,9 @@ export default function CreateTest() {
                   value={selectedOptions.testTipi}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
-                  optionStyle={'w-[25rem] max-w-[25rem]'}
+                  optionStyle={
+                    'md:w-[25rem] md:max-w-[25rem] w-[15rem] max-w-[15rem] sm:w-[20rem] sm:max-w-[20rem] '
+                  }
                 />
                 <Select
                   title={'Program'}
@@ -149,7 +157,9 @@ export default function CreateTest() {
                   value={selectedOptions.program}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
-                  optionStyle={'w-[25rem] max-w-[25rem]'}
+                  optionStyle={
+                    'md:w-[25rem] md:max-w-[25rem] w-[15rem] max-w-[15rem] sm:w-[20rem] sm:max-w-[20rem] '
+                  }
                 />
                 <Select
                   title={'Yükleme'}
@@ -158,7 +168,9 @@ export default function CreateTest() {
                   value={selectedOptions.yukleme}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
-                  optionStyle={'w-[25rem] max-w-[25rem] min-w-[25rem]'}
+                  optionStyle={
+                    'md:w-[25rem] md:max-w-[25rem] w-[15rem] max-w-[15rem] sm:w-[20rem] sm:max-w-[20rem] '
+                  }
                 />
                 <Select
                   title={'Sıcaklık'}
@@ -167,7 +179,9 @@ export default function CreateTest() {
                   value={selectedOptions.sicaklik}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
-                  optionStyle={'w-[25rem] max-w-[25rem]'}
+                  optionStyle={
+                    'md:w-[25rem] md:max-w-[25rem] w-[15rem] max-w-[15rem] sm:w-[20rem] sm:max-w-[20rem] '
+                  }
                 />
                 <Select
                   title={'Devir'}
@@ -176,39 +190,40 @@ export default function CreateTest() {
                   value={selectedOptions.devir}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
-                  optionStyle={'w-[25rem] max-w-[25rem]'}
+                  optionStyle={
+                    'md:w-[25rem] md:max-w-[25rem] w-[15rem] max-w-[15rem] sm:w-[20rem] sm:max-w-[20rem] '
+                  }
                 />
               </div>
-              <div className="flex w-[50%] items-start justify-end">
-                <div className="flex flex-col">
-                  <h1 className="mb-2 self-center text-xl font-semibold">
+              <div className="flex w-full items-center justify-center lg:items-start lg:justify-end pt-12">
+                <div className="flex w-full flex-col items-center pb-4 md:w-4/5 lg:w-fit lg:w-full">
+                  <h1 className="mb-2 self-start text-base font-semibold text-slate-600 md:text-lg lg:self-center lg:text-xl">
                     Detay Ekle
                   </h1>
                   <textarea
                     name="detay"
                     id="detay"
-                    cols="40"
                     value={selectedOptions.detay}
                     onChange={handleSelectChange}
-                    rows="10"
-                    className="resize-none rounded-lg border-2 border-stone-300"
+                    rows="8"
+                    className="w-full resize-none rounded-lg border-2 border-stone-300 lg:w-80"
                   ></textarea>
                 </div>
               </div>
             </div>
             <div
-              className="flex justify-end "
+              className="flex justify-end lg:p-0 py-8 "
               onClick={() => setStep(step + 1)}
             >
               <Button
                 style={
-                  'w-40 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
+                  'lg:w-40 sm:w-32 w-28 bg-sky-300 text-[1.1rem] font-semibold text-sm hover:bg-sky-400 rounded-sm'
                 }
                 name={'İleri'}
               />
             </div>
           </div>
-        )
+        );
       case 3:
         return (
           <div className="relative flex h-full flex-col justify-between ">
@@ -221,7 +236,7 @@ export default function CreateTest() {
               </div>
             </div>
             <div className="grow">
-              <div className="flex h-full">
+              <div className="flex gap-8 pb-8 sm:gap-0 h-full">
                 <div id="left" className="flex w-[50%] justify-center">
                   <div className="flex w-fit flex-col gap-8">
                     <p>
@@ -291,7 +306,7 @@ export default function CreateTest() {
               <div className="" onClick={() => setStep(step - 1)}>
                 <Button
                   style={
-                    'w-40 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-sm'
+                    'lg:w-40 sm:w-32 w-28 bg-red-400 text-[1.1rem] font-semibold text-sm hover:bg-red-500 rounded-sm'
                   }
                   name={'Geri'}
                 />
@@ -299,31 +314,31 @@ export default function CreateTest() {
               <div className="" onClick={() => setStep(step + 1)}>
                 <Button
                   style={
-                    'w-40 bg-green-300 text-[1.1rem] font-semibold text-sm hover:bg-green-400 rounded-sm'
+                    'lg:w-40 sm:w-32 w-28 bg-green-300 text-[1.1rem] font-semibold text-sm hover:bg-green-400 rounded-sm'
                   }
                   name={'Onayla'}
                 />
               </div>
             </div>
           </div>
-        )
+        );
 
       case 4:
         return (
           <div className="relative flex h-full flex-col items-center">
             <img src={check} alt="check" width={'400px'} height={'400px'} />
-            <h1 className="text-3xl font-bold">Test talebiniz alınmıştır!</h1>
+            <h1 className="text-3xl font-bold text-center">Test talebiniz alınmıştır!</h1>
           </div>
-        )
+        );
 
       default:
-        break
+        break;
     }
-  }
+  };
 
   return (
     <div className="mx-auto h-full max-w-[60vw]">
       <div className="relative h-full py-20">{renderSwitch()}</div>
     </div>
-  )
+  );
 }

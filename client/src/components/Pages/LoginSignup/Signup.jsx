@@ -113,7 +113,7 @@ export default function Signup() {
         <div
           id="page-container"
           className={
-            'bg-image flex h-screen items-center justify-center bg-transparent ' +
+            'bg-image flex h-screen items-center justify-center bg-transparent overflow-y-hidden ' +
             (isSuccessOpen || isFailureOpen ? 'blur-[2px] ' : '')
           }
         >
@@ -198,7 +198,7 @@ export default function Signup() {
                               Rol
                             </div>
                             <select
-                              className=" w-full rounded-md bg-sky-50 py-2 pl-4 text-sky-800"
+                              className=" w-full rounded-md bg-slate-50 py-2 pl-4 text-sky-800"
                               id="role"
                               name="role"
                               value={signupData.role}

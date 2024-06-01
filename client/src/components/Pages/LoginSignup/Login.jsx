@@ -99,7 +99,7 @@ const Login = () => {
         <div
           id="page-container"
           className={
-            'bg-image flex h-screen items-center justify-center bg-transparent ' +
+            'bg-image flex h-screen items-center justify-center bg-transparent overflow-y-hidden ' +
             (isOpen ? 'blur-sm ' : '')
           }
         >
