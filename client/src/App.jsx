@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import SidebarMenu from './components/Header/SidebarMenu';
 const App = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <div className="relative w-full">
       <div className="relative z-10 flex h-dvh min-h-dvh w-full flex-col">
