@@ -34,7 +34,7 @@ exports.createTest = async (req, res) => {
       } 
       
       else {
-        req.body.status = "pending";
+        req.body.status = "passive";
        // await station.save();
         // await lab.save();
       }
@@ -160,7 +160,7 @@ exports.assign = async (req, res) => {
     }
 
     station.isAvailable = false;
-    test.status = "active";
+    test.status = "passive";
     await station.save();
     await test.save();
 

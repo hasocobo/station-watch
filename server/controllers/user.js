@@ -35,7 +35,7 @@ exports.login = async (req, res) => {
 
         const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '15m' });
 
-       //res.cookie('jwt',token);
+        res.cookie('jwt',token);
         res.status(200).json({ success: true, user, token });
 
     } catch (error) {
@@ -128,4 +128,33 @@ exports.extractUserId = async (req, res, next) => {
         }
         return res.status(403).json({ message: 'Invalid token' });
     }
+};
+
+exports.isAdmin = async (req,res,next) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+        return res.status(403).json({ message: 'Token required' });
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    try {
+        const payload = jwt.verify(token, secretKey);
+        const user = await User.findById(payload.id);
+        console.log(user);
+        if (user.role == "admin"){
+            next();
+        }
+        else {
+            return res.status(403).json({ message: 'You dont have authorization for this action.' });
+        }
+        
+    } catch (err) {
+        if (err.name === 'TokenExpiredError') {
+        return res.status(401).json({ message: 'Token expired' });
+        }
+        return res.status(403).json({ message: 'Invalid token' });
+    }
+
 };

@@ -3,7 +3,7 @@ const router = express.Router();
 const labController = require("../controllers/lab");
 const authController = require("../controllers/user");
 
-router.post("/labs", authController.extractUserId,labController.createLab);
+router.post("/labs", authController.isAdmin,authController.extractUserId,labController.createLab);
 router.get("/labs",labController.getLabs);
 router.get("/labs/:id", labController.getLab);
 router.put("/labs/:id", labController.updateLab); 
