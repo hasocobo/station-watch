@@ -10,6 +10,7 @@ const UserContext = createContext(null);
 
 export default function UserProvider({ children }) {
   const [user, setUser] = useState(exampleUser);
+  
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}

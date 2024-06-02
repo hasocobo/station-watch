@@ -39,6 +39,7 @@ const Login = () => {
       });
       const { token } = response.data;
       localStorage.setItem('token', token);
+      localStorage.setItem('userId', response.data.user._id);
       setUser(response.data.user);
       await new Promise((resolve, reject) => {
         setTimeout(resolve, 500);

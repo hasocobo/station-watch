@@ -24,27 +24,33 @@ const testTypes = [
   { name: 'Hız' }
 ];
 const programs = [{ name: 'Eco' }, { name: 'Fast' }, { name: 'Long' }];
-const yukleme = [{ name: '0,75' }, { name: '1' }, { name: '1,5' }];
-const sicaklik = [{ name: '30°C' }, { name: '60°C' }, { name: '50°C' }];
+const load = [{ name: 0.25 }, { name: 0.50 }, { name: 0.75 }, { name: 1 }];
+const degree = [{ name: 20 }, { name: 30 }, { name: 40 }, { name: 60 }, { name: 90 }];
 const maksDevir = [
   { name: '1200rpm' },
   { name: '1500rpm' },
   { name: '600rpm' }
 ];
 
+import { useLabs } from '../../Context/LabProvider'
+
 export default function CreateTest() {
+  const { labs } = useLabs();
+  console.log(labs);
   const [selectedOptions, setSelectedOptions] = useState({
-    aquilaId: aquilaIds[0].name,
+    //aquilaId: aquilaIds[0].name,
     lab: labs[0].name,
-    istasyon: stations[0].name,
-    makine: machines[0].name,
-    testTipi: testTypes[0].name,
+    //station: stations[0].name,
+    //machine: machines[0].name,
+    testType: testTypes[0].name,
     program: programs[0].name,
-    yukleme: yukleme[0].name,
-    sicaklik: sicaklik[0].name,
-    devir: maksDevir[0].name,
+    load: load[0].name,
+    degree: degree[0].name,
+    //devir: maksDevir[0].name,
     detay: ''
   });
+
+  console.log(selectedOptions);
 
   const [step, setStep] = useState(1);
 
@@ -87,8 +93,8 @@ export default function CreateTest() {
               />
               <Select
                 title={'İstasyon Seçiniz'}
-                name={'istasyon'}
-                value={selectedOptions.istasyon}
+                name={'station'}
+                value={selectedOptions.station}
                 onChange={handleSelectChange}
                 options={stations}
                 style={'flex gap-2 flex-col'}
@@ -131,8 +137,8 @@ export default function CreateTest() {
                 <Select
                   title={'Makine'}
                   options={machines}
-                  name={'makine'}
-                  value={selectedOptions.makine}
+                  name={'machine'}
+                  value={selectedOptions.machine}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
                   optionStyle={
@@ -142,8 +148,8 @@ export default function CreateTest() {
                 <Select
                   title={'Test Tipi'}
                   options={testTypes}
-                  name={'testTipi'}
-                  value={selectedOptions.testTipi}
+                  name={'testType'}
+                  value={selectedOptions.testType}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
                   optionStyle={
@@ -163,9 +169,9 @@ export default function CreateTest() {
                 />
                 <Select
                   title={'Yükleme'}
-                  options={yukleme}
-                  name={'yukleme'}
-                  value={selectedOptions.yukleme}
+                  options={load}
+                  name={'load'}
+                  value={selectedOptions.load}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
                   optionStyle={
@@ -174,9 +180,9 @@ export default function CreateTest() {
                 />
                 <Select
                   title={'Sıcaklık'}
-                  options={sicaklik}
-                  name={'sicaklik'}
-                  value={selectedOptions.sicaklik}
+                  options={degree}
+                  name={'degree'}
+                  value={selectedOptions.degree}
                   onChange={handleSelectChange}
                   style={'flex flex-col'}
                   optionStyle={
@@ -254,17 +260,17 @@ export default function CreateTest() {
                     <p>
                       <span className="text-lg font-semibold">İstasyon: </span>
                       <span className="text-lg">
-                        {selectedOptions.istasyon}
+                        {selectedOptions.station}
                       </span>
                     </p>
                     <p>
                       <span className="text-lg font-semibold">Makine ID: </span>
-                      <span className="text-lg">{selectedOptions.makine}</span>
+                      <span className="text-lg">{selectedOptions.machine}</span>
                     </p>
                     <p>
                       <span className="text-lg font-semibold">Test Tipi: </span>
                       <span className="text-lg">
-                        {selectedOptions.testTipi}
+                        {selectedOptions.testType}
                       </span>
                     </p>
                     <p>
@@ -280,12 +286,12 @@ export default function CreateTest() {
                   <div className="flex w-fit flex-col gap-12">
                     <p>
                       <span className="text-lg font-semibold">Yükleme: </span>
-                      <span className="text-lg">{selectedOptions.yukleme}</span>
+                      <span className="text-lg">{selectedOptions.load}</span>
                     </p>
                     <p>
                       <span className="text-lg font-semibold">Sıcaklık: </span>
                       <span className="text-lg">
-                        {selectedOptions.sicaklik}
+                        {selectedOptions.degree}
                       </span>
                     </p>
                     <p>
