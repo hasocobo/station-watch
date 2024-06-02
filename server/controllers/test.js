@@ -78,7 +78,94 @@ exports.getTest = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+exports.stopComponent = async (req, res) => {
+  try {
+    const test = await Test.findById(req.params.id);
+    if (!test) {
+      return res.status(404).json({ message: "Test not found" });
+    }
 
+    // İlgili componenti bul
+    const component = test.components.find(comp => comp.componentId === req.body.componentId && !comp.endDate);
+    if (!component) {
+      return res.status(404).json({ message: "Component not found or it is not active" });
+    }
+
+    if(test.status === "active" || test.status === "pending" || test.status === "finished")
+      return res.status(400).json({ message: "Test is not in passive state" });
+
+    test.components.map(comp => {
+      if(comp.componentId === req.body.componentId && !comp.endDate){
+        comp.endDate = Date.now();
+        const testsSpinAmountInMinute = test.duration;
+
+        // Çevrimleri hesapla
+        const testStartTime = test.startDate.getTime();
+        comp.startCycle = Math.max(0, Math.floor(((comp.startDate - testStartTime) / 60000) / testsSpinAmountInMinute));
+        comp.endCycle = Math.floor(((comp.endDate - testStartTime) / 60000) / testsSpinAmountInMinute);
+      }
+    })
+
+    await test.save();
+    res.status(200).json({ success: true, test });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+exports.pauseTest = async (req, res) => {
+    try {
+        const test = await Test.findById(req.params.id);
+        if (!test) {
+        return res.status(404).json({ message: "Test not found" });
+        }
+        if(test.status !== "active")
+        return res.status(400).json({ message: "Test is not in active state" });
+        test.status = "passive";
+        await test.save();
+        res.status(200).json({ success: true, test });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
+}
+exports.resumeTest = async (req, res) => {
+    try {
+        const test = await Test.findById(req.params.id);
+        if (!test) {
+        return res.status(404).json({ message: "Test not found" });
+        }
+        if(test.status === "active")
+        return res.status(400).json({ message: "Test is already active state" });
+        test.status = "active";
+        await test.save();
+        res.status(200).json({ success: true, test });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
+
+}
+exports.addComponent = async (req, res) => {
+    try {
+        const test = await Test.findById(req.params.id);
+        if (!test) {
+        return res.status(404).json({ message: "Test not found" });
+        }
+        if(test.status === "active" || test.status === "pending" || test.status === "finished")
+        return res.status(400).json({ message: "Test is not in passive state" });
+        if(test.components.find(comp => comp.componentId === req.body.componentId && !comp.endDate))
+        return res.status(400).json({ message: "Component is already added" });
+
+        test.components.push({
+          componentId: req.body.componentId,
+          startDate: Date.now(),
+        });
+        await test.save();
+        res.status(200).json({ success: true, test });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+    }
 exports.updateTest = async (req, res) => {
 
   if (req.role != "engineer") {
@@ -125,7 +212,7 @@ exports.startTest = async (req, res) => {
         .json({ message: "Please assign a machine first." });
     }
 
-    if ((test.status = "active")) {
+    if ((test.status === "active")) {
       return res
         .status(400)
         .json({ message: "Test is already in start state" });
@@ -134,6 +221,7 @@ exports.startTest = async (req, res) => {
     test.status = "active";
     machine.tests.push(test);
     test.machine = machine;
+    test.startDate = Date.now();
 
     await test.save();
     //await machine.save();
@@ -201,7 +289,7 @@ exports.finishTest = async (req, res) => {
 
     test.machine = null;
     test.status = "finished";
-
+    test.endDate = Date.now();
     const lab = await Lab.findById(test.lab);
     // Check for pending tests
     const pendingTests = await Test.find({
@@ -238,7 +326,8 @@ exports.stopTest = async (req, res) => {
     if (!test) {
       return res.status(404).json({ message: "Test not found" });
     }
-    test.status = "active";
+    test.status = "passive";
+    test.endDate = Date.now();
     await test.save();
     res.status(200).json({ success: true, test });
   } catch (error) {

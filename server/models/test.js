@@ -14,6 +14,14 @@ const testSchema = new mongoose.Schema({
     enum : [0.25, 0.5, 0.75, 1],
     required: [true, "Load cannot be empty"],
   },
+  startDate: {
+    type: Date,
+
+  },
+  endDate: {
+    type: Date,
+
+  },
   testType: {
     type: String,
     required: [true, "KontrolSistemi-DinamikGrup-DevirBilgisi şeklinde giriniz."]
@@ -67,12 +75,39 @@ const testSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  duration: {
+    type: Number,
+    required: [true, "Duration cannot be empty"]
+  },
   lab: {
     type: mongoose.Schema.Types.ObjectId,
     default: null,
     required: [true, "Lab cannot be empty"]
-  }
+  },
+  components: [
+    {
+      _id: false,
+      componentId: {
+        type: String,
+        required: true,
+      },
+      startCycle: {
+        type: Number,
 
+      },
+        endCycle: {
+            type: Number,
+
+        },
+
+      startDate: {
+        type: Date,
+      },
+      endDate: {
+        type: Date,
+      },
+    },
+  ],
 });
 
 module.exports = mongoose.model("Test", testSchema);
