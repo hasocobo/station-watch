@@ -5,6 +5,7 @@ const stationController = require("../controllers/station");
 router.post("/stations/:labid", stationController.createStation);
 router.get("/stations", stationController.getStations);
 router.get("/stations/:id", stationController.getStation);
+router.get("/stations/lab/:labid", stationController.getStationbyLab);
 router.put("/stations/:id", stationController.updateStation);
 router.delete("/stations/:id", stationController.deleteStation);
 
