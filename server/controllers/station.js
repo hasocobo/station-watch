@@ -10,7 +10,7 @@ exports.createStation = async (req, res) => {
         name
     });
 
-    const lab = await Lab.findById( req.body.labid);
+    const lab = await Lab.findById( req.params.labid);
     
     if (!lab) {
       return res.status(404).json({ message: "Lab not found" });
@@ -48,6 +48,19 @@ exports.getStation = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+exports.getStationbyLab = async (req, res) => {
+    try {
+        const lab = await Lab.findById(req.params.labid).populate("stations");
+        if (!lab) {
+        return res.status(404).json({ message: "Lab not found" });
+        }
+        res.status(200).json(lab.stations);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
 };
 
 exports.updateStation = async (req, res) => {

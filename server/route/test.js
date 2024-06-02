@@ -15,7 +15,10 @@ router.put("/tests/:id/start", authController.extractUserRole,testController.sta
 router.put("/tests/:id/finish", authController.extractUserRole,testController.finishTest);
 router.put("/tests/:id/stop", authController.extractUserRole,testController.stopTest);
 router.delete("/tests/:id", authController.extractUserRole,testController.deleteTest);
-
+router.put("/tests/:id/addComponent", testController.addComponent);
+router.put("/tests/:id/stopComponent", testController.stopComponent);
+router.put("/tests/:id/pauseTest", testController.pauseTest);
+router.put("/tests/:id/resumeTest", testController.resumeTest);
 module.exports = router;
 
 
