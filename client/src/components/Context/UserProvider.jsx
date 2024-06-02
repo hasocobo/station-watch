@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react"
 const exampleUser = {
   name: "Hasan",
   surname: "Çoban",
-  role: "Tester"
+  role: "admin"
 }
 
 const UserContext = createContext(null);

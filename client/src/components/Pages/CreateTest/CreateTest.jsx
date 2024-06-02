@@ -47,7 +47,7 @@ export default function CreateTest() {
     load: load[0].name,
     degree: degree[0].name,
     //devir: maksDevir[0].name,
-    detay: ''
+    description: ''
   });
 
   console.log(selectedOptions);
@@ -207,9 +207,9 @@ export default function CreateTest() {
                     Detay Ekle
                   </h1>
                   <textarea
-                    name="detay"
-                    id="detay"
-                    value={selectedOptions.detay}
+                    name="description"
+                    id="description"
+                    value={selectedOptions.description}
                     onChange={handleSelectChange}
                     rows="8"
                     className="w-full resize-none rounded-lg border-2 border-stone-300 lg:w-80"
@@ -302,7 +302,7 @@ export default function CreateTest() {
                     </p>
                     <p>
                       <span className="text-lg font-semibold">Not: </span>
-                      <span className="text-lg">{selectedOptions.detay}</span>
+                      <span className="text-lg">{selectedOptions.description}</span>
                     </p>
                   </div>
                 </div>

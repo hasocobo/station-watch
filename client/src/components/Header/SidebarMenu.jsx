@@ -4,6 +4,8 @@ import { useUser } from '../Context/UserProvider';
 import NavItem from './NavItem';
 import UserIcon from './UserIcon';
 
+const allowedRoles = ['engineer', 'admin'];
+
 export default function SidebarMenu({ isOpen, handleClick }) {
   const [closed, setIsClosed] = useState(true);
 
@@ -65,6 +67,16 @@ export default function SidebarMenu({ isOpen, handleClick }) {
                 <i className="material-icons text-slate-400">person</i>
                 <p className="text-slate-600">Your Profile</p>
               </Link>
+              {allowedRoles.includes(user.role) && (
+                <Link
+                  to={'/ekle'}
+                  className="flex items-center gap-2 px-4 py-3 transition duration-200 hover:bg-slate-50 "
+                >
+                  <i className="material-icons text-slate-400">add</i>
+                  <p className="text-slate-600">Add New</p>
+                </Link>
+              )}
+              {}
               <Link
                 to={`/login`}
                 onClick={() => localStorage.clear()}
