@@ -64,9 +64,9 @@ exports.updateLab = async (req, res) => {
 
 exports.deleteLab = async (req, res) => {
 
-  if (req.role != "engineer") {
+  /*if (req.role != "engineer") {
     return res.status(403).json({ message: "Unauthorized fot this content." });
-  }
+  }*/
 
   try {
     const lab = await Lab.findByIdAndDelete(req.params.id);

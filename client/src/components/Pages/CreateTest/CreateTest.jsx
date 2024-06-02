@@ -7,10 +7,10 @@ import check from '../../../assets/check.png';
 const labs = [{ name: 'Lab 1' }, { name: 'Ömür Labı' }, { name: 'Lab 99' }];
 
 const stations = [
+  { name: 'Sıraya Gir' },
   { name: '35' },
   { name: '31' },
   { name: '33' },
-  { name: 'Sıraya Gir' }
 ];
 const machines = [{ name: '70499' }, { name: '70558' }, { name: '74015' }];
 const aquilaIds = [
@@ -24,29 +24,34 @@ const testTypes = [
   { name: 'Hız' }
 ];
 const programs = [{ name: 'Eco' }, { name: 'Fast' }, { name: 'Long' }];
-const load = [{ name: 0.25 }, { name: 0.50 }, { name: 0.75 }, { name: 1 }];
-const degree = [{ name: 20 }, { name: 30 }, { name: 40 }, { name: 60 }, { name: 90 }];
+const load = [{ name: 0.25 }, { name: 0.5 }, { name: 0.75 }, { name: 1 }];
+const degree = [
+  { name: 20 },
+  { name: 30 },
+  { name: 40 },
+  { name: 60 },
+  { name: 90 }
+];
 const maksDevir = [
   { name: '1200rpm' },
   { name: '1500rpm' },
   { name: '600rpm' }
 ];
 
-import { useLabs } from '../../Context/LabProvider'
+import { useLabs } from '../../Context/LabProvider';
 
 export default function CreateTest() {
   const { labs } = useLabs();
   console.log(labs);
   const [selectedOptions, setSelectedOptions] = useState({
-    //aquilaId: aquilaIds[0].name,
     lab: labs[0].name,
-    //station: stations[0].name,
-    //machine: machines[0].name,
+    station: stations[0].name,
+    machine: machines[0].name,
     testType: testTypes[0].name,
     program: programs[0].name,
     load: load[0].name,
     degree: degree[0].name,
-    //devir: maksDevir[0].name,
+    devir: maksDevir[0].name,
     description: ''
   });
 
@@ -72,16 +77,7 @@ export default function CreateTest() {
                 ></div>
               </div>
             </div>
-            <div className="flex grow flex-col gap-20">
-              <Select
-                title={'Test ID Seçiniz'}
-                name={'aquilaId'}
-                value={selectedOptions.aquilaId}
-                onChange={handleSelectChange}
-                options={aquilaIds}
-                style={'flex gap-2 flex-col'}
-                optionStyle={'lg:w-[40rem] md:w-[30rem] sm:w-[25rem] w-[15rem]'}
-              />
+            <div className="flex grow flex-col items-center gap-10">
               <Select
                 title={'Laboratuvar Seçiniz'}
                 name={'lab'}
@@ -100,8 +96,23 @@ export default function CreateTest() {
                 style={'flex gap-2 flex-col'}
                 optionStyle={'lg:w-[40rem] md:w-[30rem] sm:w-[25rem] w-[15rem]'}
               />
+              <div className="flex w-full items-center justify-center lg:items-start">
+                <div className="flex w-full flex-col items-center pb-4 md:w-4/5 w-full">
+                  <h1 className="mb-2 self-start text-base font-semibold text-slate-600 md:text-lg lg:self-center lg:text-xl">
+                    Detay Ekle
+                  </h1>
+                  <textarea
+                    name="description"
+                    id="description"
+                    value={selectedOptions.description}
+                    onChange={handleSelectChange}
+                    rows="8"
+                    className="w-full resize-none rounded-lg border-2 border-stone-300 lg:w-[500px]"
+                  ></textarea>
+                </div>
+              </div>
             </div>
-            <div className="flex gap-12 justify-between">
+            <div className="flex justify-between gap-12">
               <div className="" onClick={() => setStep(step - 1)}>
                 <Button
                   style={
@@ -132,7 +143,7 @@ export default function CreateTest() {
                 ></div>
               </div>
             </div>
-            <div className="flex grow flex-col lg:flex-row">
+            <div className="flex grow flex-col items-center lg:flex-row lg:justify-center">
               <div className="flex flex-col items-center gap-6   ">
                 <Select
                   title={'Makine'}
@@ -201,24 +212,9 @@ export default function CreateTest() {
                   }
                 />
               </div>
-              <div className="flex w-full items-center justify-center lg:items-start lg:justify-end pt-12">
-                <div className="flex w-full flex-col items-center pb-4 md:w-4/5 lg:w-fit lg:w-full">
-                  <h1 className="mb-2 self-start text-base font-semibold text-slate-600 md:text-lg lg:self-center lg:text-xl">
-                    Detay Ekle
-                  </h1>
-                  <textarea
-                    name="description"
-                    id="description"
-                    value={selectedOptions.description}
-                    onChange={handleSelectChange}
-                    rows="8"
-                    className="w-full resize-none rounded-lg border-2 border-stone-300 lg:w-80"
-                  ></textarea>
-                </div>
-              </div>
             </div>
             <div
-              className="flex justify-end lg:p-0 py-8 "
+              className="flex justify-end py-8 lg:p-0 "
               onClick={() => setStep(step + 1)}
             >
               <Button
@@ -242,15 +238,9 @@ export default function CreateTest() {
               </div>
             </div>
             <div className="grow">
-              <div className="flex gap-8 pb-8 sm:gap-0 h-full">
+              <div className="flex h-full gap-8 pb-8 sm:gap-0">
                 <div id="left" className="flex w-[50%] justify-center">
                   <div className="flex w-fit flex-col gap-8">
-                    <p>
-                      <span className="text-lg font-semibold">Proje ID: </span>
-                      <span className="text-lg">
-                        {selectedOptions.aquilaId}
-                      </span>
-                    </p>
                     <p>
                       <span className="text-lg font-semibold">
                         Laboratuvar:{' '}
@@ -259,9 +249,7 @@ export default function CreateTest() {
                     </p>
                     <p>
                       <span className="text-lg font-semibold">İstasyon: </span>
-                      <span className="text-lg">
-                        {selectedOptions.station}
-                      </span>
+                      <span className="text-lg">{selectedOptions.station}</span>
                     </p>
                     <p>
                       <span className="text-lg font-semibold">Makine ID: </span>
@@ -290,9 +278,7 @@ export default function CreateTest() {
                     </p>
                     <p>
                       <span className="text-lg font-semibold">Sıcaklık: </span>
-                      <span className="text-lg">
-                        {selectedOptions.degree}
-                      </span>
+                      <span className="text-lg">{selectedOptions.degree}</span>
                     </p>
                     <p>
                       <span className="text-lg font-semibold">
@@ -302,7 +288,9 @@ export default function CreateTest() {
                     </p>
                     <p>
                       <span className="text-lg font-semibold">Not: </span>
-                      <span className="text-lg">{selectedOptions.description}</span>
+                      <span className="text-lg">
+                        {selectedOptions.description}
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -333,7 +321,9 @@ export default function CreateTest() {
         return (
           <div className="relative flex h-full flex-col items-center">
             <img src={check} alt="check" width={'400px'} height={'400px'} />
-            <h1 className="text-3xl font-bold text-center">Test talebiniz alınmıştır!</h1>
+            <h1 className="text-center text-3xl font-bold">
+              Test talebiniz alınmıştır!
+            </h1>
           </div>
         );
 

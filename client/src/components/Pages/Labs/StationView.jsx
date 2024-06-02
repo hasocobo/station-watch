@@ -19,9 +19,8 @@ export default function StationView() {
       </div>
       <div className="flex justify-center px-4 py-24">
         <div className="h-[30rem] rounded-md border shadow sm:w-[60rem]">
-          <p className="text-center font-semibold">
+          <p className="text-center text-lg font-semibold">
             {station.name}
-            <span>work in progress</span>
           </p>
         </div>
       </div>

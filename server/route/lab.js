@@ -7,6 +7,6 @@ router.post("/labs", authController.extractUserRole,authController.extractUserId
 router.get("/labs",labController.getLabs);
 router.get("/labs/:id", labController.getLab);
 router.put("/labs/:id",authController.extractUserRole, labController.updateLab); 
-router.delete("/labs/:id",authController.extractUserRole, labController.deleteLab);
+router.delete("/labs/:id", labController.deleteLab);
 
 module.exports = router;
