@@ -3,11 +3,11 @@ import Icon from '../../Icon/Icon';
 import Select from '../CreateTest/Select';
 import axios from 'axios';
 
-const exampleTests = [{ _id: '64556' }];
+const exampleTests = [{ _id: '64556', creationDate: "2024-06-01", createdBy: "Hasan", description: "Motor Testi, Başarılı" }];
 
 export default function TestHistory() {
   const [data, setData] = useState(exampleTests);
-  useEffect(() => {
+  /*useEffect(() => {
     const controller = new AbortController();
     try {
       const fetchLabs = async () => {
@@ -26,7 +26,7 @@ export default function TestHistory() {
     } catch (error) {}
     return () => controller.abort();
   }, []);
-
+*/
   function assignJob(test) {
     let updatedPendingTests = '';
     setData((prevTests) => {
@@ -49,9 +49,11 @@ export default function TestHistory() {
           <tr className="border-b">
             <th></th>
             <th>Test ID</th>
-            <th></th>
+            <th>Description</th>
+            <th>Done By</th>
             <th>Test Start Date</th>
             <th>Test Finish Date</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -63,8 +65,8 @@ export default function TestHistory() {
             >
               <td></td>
               <td>{item._id.slice(0, 7)}...</td>
-              <td>{item.description && item.description}</td>
-              {<td>{item.creationBy && item.creationBy.name}</td>}
+              {<td>{item.description && item.description}</td>}
+              {<td>{item.createdBy && item.createdBy}</td>}
               <td className="">
                 {item.creationDate && item.creationDate.slice(0, 10)}
               </td>

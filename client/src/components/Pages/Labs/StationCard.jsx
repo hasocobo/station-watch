@@ -11,12 +11,12 @@ export default function StationCard({
 }) {
   return (
     <Link to={link.toString()} className="rounded-md border flex flex-col bg-white shadow-md transition-shadow duration-200 hover:shadow-xl">
-      <div className=" bg-zinc-50 px-6 py-5 text-center text-xl font-semibold text-slate-700">
+      <div className=" bg-zinc-50 px-6 py-5 text-center lg:text-xl md:text-lg font-semibold text-slate-700">
         {title}
       </div>
       <div className="px-6 pb-6 pt-3 flex grow flex-col">
         {cycles && (
-          <div className="mb-4 flex items-center justify-center gap-1 text-center text-lg font-semibold text-slate-600">
+          <div className="mb-4 flex items-center justify-center gap-1 text-center lg:text-lg md:text-base text-sm font-semibold text-slate-600">
             <i className="material-symbols-outlined text-slate-400">cycle</i>
             <div>
               {cycles}.{' '}

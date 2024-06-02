@@ -9,7 +9,7 @@ export default function StationView() {
   return (
     <div className="relative overflow-x-hidden">
       <div className="top absolute mx-20 w-full pl-24 pt-8 text-base ">
-        <p className="font-bold text-slate-600 gap-2 flex items-center text-lg p-2 bg-slate-50 rounded-lg w-fit">
+        <p className="font-bold text-slate-600 gap-2 flex items-center md:text-lg sm:text-base text-sm p-2 bg-slate-50 rounded-lg w-fit">
           <Link to={`/laboratuvarlar/${lab._id}`} className='text-slate-600 text-xl hover:text-slate-700'>
             {lab.name}
           </Link>

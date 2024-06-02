@@ -35,9 +35,7 @@ export default function Hero() {
           text={'Bekleyen Tesler'}
           link={'/bekleyentestler'}
         />
-        <div className="letter-animation delay-xxl flex w-full justify-center pt-4">
-          <SearchBar />
-        </div>
+
       </div>
     </div>
   )
