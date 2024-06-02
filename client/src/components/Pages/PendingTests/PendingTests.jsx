@@ -9,12 +9,7 @@ import {
   Transition,
   TransitionChild
 } from '@headlessui/react';
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOption,
-  ListboxOptions
-} from '@headlessui/react';
+
 
 import axios from 'axios';
 import { useUser } from '../../Context/UserProvider';
@@ -22,20 +17,20 @@ import { useUser } from '../../Context/UserProvider';
 const allowedRoles = ['engineer', 'admin'];
 
 const labs = [
-  { name: 'Lab 1', id: 101 },
-  { name: 'Ömür Labı', id: 102 },
-  { name: 'Lab 99', id: 103 }
+  { name: 'Performans Labı', _id: 101 },
+  { name: 'Ömür Labı', _id: 102 },
+  { name: 'Hız Labı', _id: 103 }
 ];
 
 const stations = [
-  { name: '15', id: 6565652 },
-  { name: '25', id: 6546565465 },
-  { name: '55', id: 65454664564 }
+  { name: '15', _id: 6565652 },
+  { name: '25', _id: 6546565465 },
+  { name: '55', _id: 65454664564 }
 ];
 
 const exampleData = [
   {
-    id: 32655,
+    _id: 126561125,
     projectName: 'Test',
     createdBy: 'Ayşe',
     creationDate: '26/05/2024',
@@ -44,7 +39,7 @@ const exampleData = [
     assigned: false
   },
   {
-    id: 3211655,
+    _id: 88811655,
     projectName: 'Random',
     createdBy: 'Atakan',
     creationDate: '27/05/2024',
@@ -53,17 +48,17 @@ const exampleData = [
     assigned: false
   },
   {
-    id: 3262255,
+    _id: 32612255,
     projectName: 'Hız testi',
-    createdBy: 'Mehmet',
+    createdBy: 'Elif',
     creationDate: '25/05/2024',
     labAssignment: labs,
     stationAssignment: stations,
     assigned: false
   },
   {
-    id: 3269955,
-    projectName: 'Amet ',
+    _id: 326995125,
+    projectName: 'Component Arızası ',
     createdBy: 'Ali',
     creationDate: '23/05/2024',
     labAssignment: labs,
@@ -71,17 +66,17 @@ const exampleData = [
     assigned: false
   },
   {
-    id: 32628511,
-    projectName: 'Dolor sit',
-    createdBy: 'Veli',
+    _id: 32628511,
+    projectName: 'Motor Testi',
+    createdBy: 'Ceren',
     creationDate: '21/05/2024',
     labAssignment: labs,
     stationAssignment: stations,
     assigned: false
   },
   {
-    id: 3262855,
-    projectName: 'Lorem ipsum ',
+    _id: 32628551,
+    projectName: 'Devir Testi ',
     createdBy: 'Hasan',
     creationDate: '28/05/2024',
     labAssignment: labs,
@@ -103,7 +98,7 @@ export default function PendingTests({ pendingTests = exampleData }) {
   }
 
   const [data, setData] = useState(pendingTests);
-
+/*
   useEffect(() => {
     const controller = new AbortController();
     try {
@@ -123,7 +118,7 @@ export default function PendingTests({ pendingTests = exampleData }) {
     }
 
     return () => controller.abort();
-  }, []);
+  }, []); */
 
 
   function assignJob(test) {
@@ -231,26 +226,26 @@ export default function PendingTests({ pendingTests = exampleData }) {
                   className="border-b transition duration-200 hover:bg-stone-50"
                 >
                   <td></td>
-                  <td>{item._id && item._id.slice(0, 7)}...</td>
-                  <td>{item.description && item.description}</td>
-                  <td>{item.creationBy && item.creationBy.name}</td>
+                  <td>{item._id && item._id}</td>
+                  <td>{item.projectName && item.projectName}</td>
+                  <td>{item.createdBy && item.createdBy}</td>
                   <td>{item.creationDate.slice(0, 10)}</td>
                   {allowedRoles.includes(user.role) && (
                     <td className="w-60">
-                      {/*<Select
+                      {<Select
                     optionStyle={'w-full max-w-full py-3 px-4'}
                     options={item.labAssignment}
-                    id={item.id}
-                  />*/}
+                    id={item._id}
+                  />}
                     </td>
                   )}
                   {allowedRoles.includes(user.role) && (
                     <td className="w-60">
-                      {/*<Select
+                      {<Select
                     optionStyle={'w-full max-w-full px-4 py-3'}
                     options={item.stationAssignment}
-                    id={item.id}
-                />*/}
+                    id={item._id}
+                />}
                     </td>
                   )}
                   <td className="px-0 py-0">

@@ -3,11 +3,21 @@ import StationCard from './StationCard';
 import { useLabs } from '../../Context/LabProvider';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useMemo } from 'react';
 
 export default function Stations() {
   const { labs } = useLabs();
   const { labId } = useParams();
   const lab = labs.find((lab) => lab._id === labId);
+
+  const emptyStations = useMemo(() => {
+    return lab.stations.filter((station) => station.status === 'BOŞ');
+  }, [lab.stations]);
+
+  const stationAmount = useMemo(() => {
+    return lab.stations.length;
+  }, [lab.stations]);
+
   {
     /*
       useEffect(() => {
@@ -29,9 +39,9 @@ export default function Stations() {
   }
 
   return (
-    <div className='overflow-x-hidden relative'>
+    <div className="relative overflow-x-hidden">
       <div className="top absolute mx-20 w-full pl-24 pt-8 text-base ">
-        <p className="text-xl font-bold text-sky-900 bg-slate-50 w-fit rounded-lg p-2">
+        <p className="w-fit rounded-lg bg-slate-50 p-2 text-xl font-bold text-sky-900">
           <Link
             to={`/laboratuvarlar/${lab._id}`}
             className="text-slate-600 hover:text-slate-700"
@@ -39,18 +49,18 @@ export default function Stations() {
             {lab.name}
           </Link>
         </p>
-        <div className="flex items-baseline gap-3 mt-2">
+        <div className="mt-2 flex items-baseline gap-3">
           <div className="flex gap-4">
             <div className="text-lg text-slate-500">
-              <span className="font-bold text-slate-800">8</span> dolu istasyon
+              <span className="font-bold text-slate-800">{stationAmount - emptyStations.length}</span> dolu istasyon
             </div>
             <div className="text-lg text-slate-500">
-              <span className="font-bold text-slate-800">2</span> boş istasyon
+              <span className="font-bold text-slate-800">{emptyStations.length}</span> boş istasyon
             </div>
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-[80vw] overflow-y-auto bg-white p-6 mt-8">
+      <div className="mx-auto mt-8 max-w-[80vw] overflow-y-auto bg-white p-6">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex w-full items-center justify-between">
             <div></div>
@@ -72,10 +82,10 @@ export default function Stations() {
               key={station._id}
               link={station._id}
               title={station.name}
-              cycles={'55'}
-              status={'AKTİF'}
-              statusColor={'bg-green-100'}
-              textColor={'text-green-800'}
+              cycles={station.cycles}
+              status={station.status}
+              statusColor={station.statusColor}
+              textColor={station.textColor}
             />
           ))}
         </div>

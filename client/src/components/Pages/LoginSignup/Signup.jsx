@@ -113,7 +113,7 @@ export default function Signup() {
         <div
           id="page-container"
           className={
-            'bg-image flex h-screen items-center justify-center bg-transparent overflow-y-hidden ' +
+            'bg-image flex h-screen sm:items-center justify-center bg-transparent overflow-y-hidden ' +
             (isSuccessOpen || isFailureOpen ? 'blur-[2px] ' : '')
           }
         >

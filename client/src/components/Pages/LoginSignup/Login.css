@@ -49,6 +49,8 @@ body {
   height: 100%;
 }
 
+
+
 #main {
   flex-grow: 1;
   display: flex;
@@ -149,4 +151,14 @@ fieldset > div:last-child {
 
 #page-container :invalid {
   border-color: #f87171;
+}
+
+@media screen and (max-width: 640px) {
+  #main {
+    align-items: start;
+  }
+
+  #page-container::before {
+    background-image: none;
+  }
 }

@@ -35,7 +35,6 @@ main:not(.icon) {
 }
 
 .bg-image {
-  background-image: url('./assets/images/pexels-sound-on-3394666.jpg');
   background-size: cover;
   background-position: 10% 80%;
   background-repeat: no-repeat;

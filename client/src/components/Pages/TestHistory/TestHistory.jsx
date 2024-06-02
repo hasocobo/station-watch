@@ -64,7 +64,7 @@ export default function TestHistory() {
               <td></td>
               <td>{item._id.slice(0, 7)}...</td>
               <td>{item.description && item.description}</td>
-              {/*<td>{item.creationBy && item.creationBy.name}</td>*/}
+              {<td>{item.creationBy && item.creationBy.name}</td>}
               <td className="">
                 {item.creationDate && item.creationDate.slice(0, 10)}
               </td>

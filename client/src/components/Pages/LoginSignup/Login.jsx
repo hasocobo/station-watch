@@ -100,14 +100,14 @@ const Login = () => {
         <div
           id="page-container"
           className={
-            'bg-image flex h-screen items-center justify-center bg-transparent overflow-y-hidden ' +
+            'bg-image flex h-screen sm:items-center justify-center bg-transparent overflow-y-hidden ' +
             (isOpen ? 'blur-sm ' : '')
           }
         >
           <div id="main" className="rounded-lg">
             <div
               id="card-container"
-              className="mx-auto flex rounded-lg shadow-sm ring-1 ring-slate-900/5"
+              className="mx-auto flex rounded-lg shadow-sm sm:ring-1 sm:ring-slate-900/5"
             >
               <div id="form-container">
                 <div id="form">
