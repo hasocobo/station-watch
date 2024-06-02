@@ -9,6 +9,13 @@ import {
   Transition,
   TransitionChild
 } from '@headlessui/react';
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions
+} from '@headlessui/react';
+
 import axios from 'axios';
 import { useUser } from '../../Context/UserProvider';
 
@@ -118,10 +125,6 @@ export default function PendingTests({ pendingTests = exampleData }) {
     return () => controller.abort();
   }, []);
 
-  useEffect(() => {
-    try {
-    } catch (error) {}
-  }, []);
 
   function assignJob(test) {
     let updatedPendingTests = '';
@@ -215,12 +218,8 @@ export default function PendingTests({ pendingTests = exampleData }) {
               <th>Description</th>
               <th>Created By</th>
               <th>Creation Date</th>
-              {allowedRoles.includes(user.role) && (
-                <th>Lab Assignment</th>
-              )}
-              {allowedRoles.includes(user.role) && (
-                <th>Station Assignment</th>
-              )}
+              {allowedRoles.includes(user.role) && <th>Lab Assignment</th>}
+              {allowedRoles.includes(user.role) && <th>Station Assignment</th>}
               <th></th>
             </tr>
           </thead>
