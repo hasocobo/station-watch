@@ -46,13 +46,13 @@ export default function Avatar({ user }) {
           </header>
           <main className="bg-white">
             <div className="flex flex-col bg-white">
-              <Link
+{/*              <Link
                 to={''}
                 className="flex items-center gap-2 px-5 py-3 hover:bg-sky-50 "
               >
                 <i className="material-icons text-slate-400">person</i>
                 <p className="text-slate-600">Your Profile</p>
-              </Link>{' '}
+      </Link>{' '}*/}
               {allowedRoles.includes(user.role) && (
                 <Link
                   to={'/ekle'}

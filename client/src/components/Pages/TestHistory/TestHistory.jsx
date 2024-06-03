@@ -3,7 +3,12 @@ import Icon from '../../Icon/Icon';
 import Select from '../CreateTest/Select';
 import axios from 'axios';
 
-const exampleTests = [{ _id: '64556', creationDate: "2024-06-01", createdBy: "Hasan", description: "Motor Testi, Başarılı" }];
+const exampleTests = [
+  { _id: '64556', creationDate: "2024-06-01", createdBy: "Hasan", description: "Motor Testi, Başarılı" },
+  { _id: '64557', creationDate: "2024-05-30", createdBy: "Ceren", description: "Devir Testi, Başarılı" },
+  { _id: '64558', creationDate: "2024-06-01", createdBy: "Hasan", description: "Parça Testi, Başarısız, Performans labında tekrar dene" },
+
+];
 
 export default function TestHistory() {
   const [data, setData] = useState(exampleTests);
@@ -65,7 +70,7 @@ export default function TestHistory() {
             >
               <td></td>
               <td>{item._id.slice(0, 7)}...</td>
-              {<td>{item.description && item.description}</td>}
+              {<td className='text-wrap w-48'>{item.description && item.description}</td>}
               {<td>{item.createdBy && item.createdBy}</td>}
               <td className="">
                 {item.creationDate && item.creationDate.slice(0, 10)}

@@ -60,13 +60,13 @@ export default function SidebarMenu({ isOpen, handleClick }) {
           </div>
           <div onClick={handleClick}>
             <div className="flex flex-col border-b border-slate-100 text-sm font-semibold">
-              <Link
+{/*              <Link
                 to={''}
                 className="flex items-center gap-2 px-4 py-3 transition duration-200 hover:bg-slate-50 "
               >
                 <i className="material-icons text-slate-400">person</i>
                 <p className="text-slate-600">Your Profile</p>
-              </Link>
+      </Link> */}
               {allowedRoles.includes(user.role) && (
                 <Link
                   to={'/ekle'}

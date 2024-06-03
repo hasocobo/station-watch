@@ -12,7 +12,7 @@ const stations = [
   { name: '31' },
   { name: '33' },
 ];
-const machines = [{ name: '70499', img: "" }, { name: '70558', img: "" }, { name: '74015', img: "" }];
+const machines = [{ name: 'MX4000', img: "" }, { name: 'ML1500', img: "" }, { name: 'MA2000', img: "" }];
 const aquilaIds = [
   { name: '357162322' },
   { name: '325689723' },

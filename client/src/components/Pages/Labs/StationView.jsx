@@ -10,6 +10,10 @@ export default function StationView() {
   const station = lab.stations.find(
     (station) => station._id.toString() === stationId
   );
+
+  const statusColor = station.statusColor;
+  const textColor = station.textColor;
+
   return (
     <div className="relative overflow-x-hidden">
       <div className="top absolute w-full pl-4 pt-3 text-base sm:pl-6 sm:pt-4 md:pl-12 md:pt-6 lg:pl-24 lg:pt-8 ">
@@ -26,51 +30,80 @@ export default function StationView() {
       </div>
       <div className="flex flex-col items-center px-4 py-24 ">
         <div className="h-[30rem] w-[20rem] rounded-md border px-5 py-4 shadow sm:px-8 sm:py-6  md:w-[25rem] md:px-10 md:py-8 lg:w-[30rem] lg:px-12 lg:py-10">
-          <div className="flex justify-center h-full border ">
-            <div className="text-nowrap text-base font-semibold text-slate-600 md:text-lg lg:text-lg">
-              <div className="flex items-center gap-1 justify-center">
+          <div className="flex h-full md:px-9 lg:pl-10 ">
+            <div className="flex w-full flex-col justify-between">
+              <div className="flex w-full flex-col gap-2 text-nowrap text-base font-semibold text-slate-600 md:text-lg lg:text-lg">
                 <div className="flex items-center gap-1">
-                  <i className="material-symbols-outlined text-slate-500">
-                    id_card
-                  </i>
-                  <p>Project ID: </p>
+                  <div className="flex items-center gap-1">
+                    <i className="material-symbols-outlined text-slate-500">
+                      id_card
+                    </i>
+                    <p>Project ID: </p>
+                  </div>
+                  <span className="text-nowrap text-base font-normal text-slate-500 md:text-lg lg:text-lg">
+                    56898521
+                  </span>
                 </div>
-                <span className="text-nowrap text-base font-normal text-slate-500 md:text-lg lg:text-lg">
-                  56898521
-                </span>
+                <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1">
+                    <i className="material-symbols-outlined text-slate-500">
+                      badge
+                    </i>
+                    <p>Project Name: </p>
+                  </div>
+                  <span className="text-nowrap text-base font-normal text-slate-500 md:text-lg lg:text-lg">
+                    Motor Testi
+                  </span>
+                </div>
+                <div className="flex items-center gap-1 ">
+                  <div className="flex items-center gap-1">
+                    <i className="material-symbols-outlined text-slate-500">
+                      description
+                    </i>
+                    <p>Project Description : </p>
+                  </div>
+                  <span className=" text-base font-normal text-slate-500 md:text-lg lg:text-lg"></span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1">
+                    <i className="material-symbols-outlined text-slate-500">
+                      id_card
+                    </i>
+                    <p>Created By: </p>
+                  </div>
+                  <span className="text-nowrap text-base font-normal text-slate-500 md:text-lg lg:text-lg">
+                    Hasan
+                  </span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1">
+                    <i className="material-symbols-outlined text-slate-500">
+                      calendar_month
+                    </i>
+                    <p>Creation Date: </p>
+                  </div>
+                  <span className="text-nowrap text-base font-normal text-slate-500 md:text-lg lg:text-lg">
+                    29/05/2024
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-1 justify-center">
+              <div className="flex grow flex-col items-center gap-2 justify-end">
+                <div
+                  className={`mt-auto flex items-center justify-center rounded-md px-6 py-2 font-semibold ${statusColor} ${textColor}`}
+                >
+                  TEST {station.status}
+                </div>{' '}
                 <div className="flex items-center gap-1">
-                  <i className="material-symbols-outlined text-slate-500">
-                    badge
-                  </i>
-                  <p>Project Name: </p>
+                  <div className="flex items-center gap-1">
+                    <i className="material-symbols-outlined text-slate-500">
+                      cycle
+                    </i>
+                    <p className='font-semibold'>Current Cycle: </p>
+                  </div>
+                  <span className="text-nowrap text-base font-normal text-slate-500 md:text-lg lg:text-lg">
+                    {station.cycles}
+                  </span>
                 </div>
-                <span className="text-nowrap text-base font-normal text-slate-500 md:text-lg lg:text-lg">
-                  
-                </span>
-              </div>
-              <div className="flex items-center gap-1 justify-center">
-                <div className="flex items-center gap-1">
-                  <i className="material-symbols-outlined text-slate-500">
-                    id_card
-                  </i>
-                  <p>Project ID: </p>
-                </div>
-                <span className="text-nowrap text-base font-normal text-slate-500 md:text-lg lg:text-lg">
-                  56898521
-                </span>
-              </div>
-              <div className="flex items-center gap-1 justify-center">
-                <div className="flex items-center gap-1">
-                  <i className="material-symbols-outlined text-slate-500">
-                    id_card
-                  </i>
-                  <p>Project ID: </p>
-                </div>
-                <span className="text-nowrap text-base font-normal text-slate-500 md:text-lg lg:text-lg">
-                  56898521
-                </span>
               </div>
             </div>
           </div>
