@@ -1,3 +1,8 @@
+/*
+mail service occurs when there is an avaible station for engineers whose test are on "pending" status.
+
+*/
+
 const nodemailer = require('nodemailer');
 
 const sendEmail = async (to, subject, text) => {
