@@ -29,8 +29,8 @@ export default function StationView() {
         </p>
       </div>
       <div className="flex flex-col items-center px-4 py-24 ">
-        <div className="h-[30rem] w-[20rem] rounded-md border px-5 py-4 shadow sm:px-8 sm:py-6  md:w-[25rem] md:px-10 md:py-8 lg:w-[30rem] lg:px-12 lg:py-10">
-          <div className="flex h-full md:px-9 lg:pl-10 ">
+        <div className="h-[30rem] w-[20rem] rounded-md border px-5 py-5 shadow sm:px-8 sm:py-6 md:w-[25rem] md:px-10 md:py-8 lg:w-[30rem] lg:px-14 lg:py-8">
+          <div className="flex h-full ">
             <div className="flex w-full flex-col justify-between">
               <div className="flex w-full flex-col gap-2 text-nowrap text-base font-semibold text-slate-600 md:text-lg lg:text-lg">
                 <div className="flex items-center gap-1">
