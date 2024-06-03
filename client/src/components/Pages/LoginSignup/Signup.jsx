@@ -47,7 +47,7 @@ export default function Signup() {
       setIsSuccessOpen(true);
       console.log(response.data);
     } catch (error) {
-      setIsFailureOpen();
+      setIsFailureOpen(true);
       console.log(error);
     }
   }
@@ -100,6 +100,59 @@ export default function Signup() {
                         onClick={() => navigate('/login')}
                       >
                         Log in
+                      </Button>
+                    </div>
+                  </div>
+                </DialogPanel>
+              </TransitionChild>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+      <Transition appear show={isFailureOpen}>
+        <Dialog
+          as="div"
+          className="relative z-10 focus:outline-none"
+          onClose={() => setIsFailureOpen(false)}
+        >
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4">
+              <TransitionChild
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 transform-[scale(95%)]"
+                enterTo="opacity-100 transform-[scale(100%)]"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 transform-[scale(100%)]"
+                leaveTo="opacity-0 transform-[scale(95%)]"
+              >
+                <DialogPanel className="w-96 max-w-md rounded-xl border bg-white/5 p-6 backdrop-blur-2xl">
+                  <DialogTitle
+                    as="h3"
+                    className="flex items-center gap-2 text-lg font-semibold text-slate-800"
+                  >
+                    <div className="flex size-12 items-center justify-center rounded-full bg-red-50">
+                      <i className="material-icons text-2xl text-red-950">
+                        close
+                      </i>
+                    </div>
+                    User already exists!
+                  </DialogTitle>
+                  <p className="mt-2 text-sm/6 text-slate-800/50">
+                    This e-mail is already being used, please try another e-mail, or log-in with the existing e-mail.
+                  </p>
+                  <div className="mt-4">
+                    <div className='flex justify-between '>
+                      <Button
+                        className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm/6 font-semibold text-blue-900 shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-blue-50 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+                        onClick={() => setIsFailureOpen(false)}
+                      >
+                        Close
+                      </Button>
+                      <Button
+                        className="inline-flex items-center gap-2 rounded-md bg-blue-400 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-blue-500 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+                        onClick={() => navigate('/login')}
+                      >
+                        Log in with the existing user
                       </Button>
                     </div>
                   </div>

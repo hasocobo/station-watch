@@ -21,7 +21,6 @@ const Login = () => {
 
   let [isOpen, setIsOpen] = useState(false);
 
-
   function open() {
     setIsOpen(true);
   }
@@ -71,20 +70,25 @@ const Login = () => {
                 leaveFrom="opacity-100 transform-[scale(100%)]"
                 leaveTo="opacity-0 transform-[scale(95%)]"
               >
-                <DialogPanel className="w-96 max-w-md rounded-xl border bg-white p-6 backdrop-blur-2xl">
+                <DialogPanel className="w-96 max-w-md rounded-xl border bg-white p-4 backdrop-blur-2xl">
                   <DialogTitle
                     as="h3"
-                    className="text-lg font-semibold text-slate-800"
+                    className="text-lg font-semibold text-slate-800 flex items-center gap-3"
                   >
+                    <div className="flex size-12 items-center justify-center rounded-full bg-red-50">
+                      <i className="material-icons text-xl text-red-950">
+                        close
+                      </i>
+                    </div>
                     Wrong username or password!
                   </DialogTitle>
                   <p className="mt-2 text-sm/6 text-slate-800/50">
                     Please enter your username and password again.
                   </p>
-                  <div className="mt-4">
+                  <div className="mt-4 flex justify-end">
                     <Button
-                      className="inline-flex items-center gap-2 rounded-md bg-blue-400 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-blue-500 
-                      transition duration-200 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+                      className="inline-flex items-center gap-2 rounded-md bg-blue-400 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 transition duration-200 
+                      focus:outline-none data-[hover]:bg-blue-500 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
                       onClick={close}
                     >
                       Try Again
@@ -100,7 +104,7 @@ const Login = () => {
         <div
           id="page-container"
           className={
-            'bg-image flex h-screen sm:items-center justify-center bg-transparent overflow-y-hidden ' +
+            'bg-image flex h-screen justify-center overflow-y-hidden bg-transparent sm:items-center ' +
             (isOpen ? 'blur-sm ' : '')
           }
         >
@@ -120,67 +124,67 @@ const Login = () => {
                       {"StationWatch'a hoşgeldin!"}
                     </h2>
                   </div>
-                    <form
-                      onSubmit={handleLoginSubmit}
-                      className="rounded-b-lg bg-white px-16 pb-8 pt-8"
-                    >
-                      <fieldset>
+                  <form
+                    onSubmit={handleLoginSubmit}
+                    className="rounded-b-lg bg-white px-16 pb-8 pt-8"
+                  >
+                    <fieldset>
+                      <div>
                         <div>
-                          <div>
-                            <input
-                              type="text"
-                              id="username"
-                              name="username"
-                              value={username}
-                              onChange={(e) => setUsername(e.target.value)}
-                              minLength="3"
-                              maxLength="20"
-                              placeholder=" "
-                              required
-                            />
-                            <label htmlFor="username">Kullanıcı Adı</label>
-                          </div>
-                          <div>
-                            <input
-                              type="password"
-                              id="password"
-                              name="password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                              minLength="6"
-                              maxLength="20"
-                              placeholder=" "
-                              required
-                            />
-                            <label htmlFor="password">Şifre</label>
-                          </div>
+                          <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            minLength="3"
+                            maxLength="20"
+                            placeholder=" "
+                            required
+                          />
+                          <label htmlFor="username">Kullanıcı Adı</label>
                         </div>
+                        <div>
+                          <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            minLength="6"
+                            maxLength="20"
+                            placeholder=" "
+                            required
+                          />
+                          <label htmlFor="password">Şifre</label>
+                        </div>
+                      </div>
 
-                        <div className="button">
-                          <button
-                            type="submit"
-                            className="mb-2 rounded-md bg-blue-400 hover:bg-blue-500"
-                          >
-                            Giriş Yap
-                          </button>
-                        </div>
-                        <div>
-                          Şifreni mi unuttun?{' '}
-                          <a href="#" className="font-semibold text-blue-300">
-                            Şifreni Yenile
-                          </a>
-                          <div className="flex w-full justify-center">
-                            <div
-                              onClick={() => navigate("/signup")}
-                              className="mt-4 w-fit rounded-md bg-blue-50
+                      <div className="button">
+                        <button
+                          type="submit"
+                          className="mb-2 rounded-md bg-blue-400 hover:bg-blue-500"
+                        >
+                          Giriş Yap
+                        </button>
+                      </div>
+                      <div>
+                        Şifreni mi unuttun?{' '}
+                        <a href="#" className="font-semibold text-blue-300">
+                          Şifreni Yenile
+                        </a>
+                        <div className="flex w-full justify-center">
+                          <div
+                            onClick={() => navigate('/signup')}
+                            className="mt-4 w-fit rounded-md bg-blue-50
                             p-2 font-semibold text-blue-400 hover:cursor-pointer hover:text-blue-500 "
-                            >
-                              Veya Hemen Kaydol!
-                            </div>
+                          >
+                            Veya Hemen Kaydol!
                           </div>
                         </div>
-                      </fieldset>
-                    </form>
+                      </div>
+                    </fieldset>
+                  </form>
                 </div>
               </div>
             </div>
