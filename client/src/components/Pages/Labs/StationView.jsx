@@ -42,7 +42,7 @@ export default function StationView() {
               <div className="flex items-center gap-1 justify-center">
                 <div className="flex items-center gap-1">
                   <i className="material-symbols-outlined text-slate-500">
-                    id_card
+                    badge
                   </i>
                   <p>Project Name: </p>
                 </div>
